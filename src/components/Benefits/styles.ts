@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { titleBy, type Tone } from "../../styles/typography";
 
 export const BenefitsContainer = styled.section`
     display: flex;
@@ -17,13 +18,11 @@ export const BenefitsText = styled.p`
     margin-bottom: 30px;
     font-family: "Poppins", sans-serif;`
 
-export const Title = styled.h2`
-    font-weight: 900;
-    font-size: 34px;
+export const Title = styled.h2<{ $tone?: Tone }>`
+    ${({ $tone = "PrimaryPurple" }) => titleBy("m", $tone)};
     font-style: normal;
-    font-family: "Inter", sans-serif;
-    color: ${colors.PrimaryPurple};
-    margin-bottom: 40px;`
+    margin-bottom: 40px;
+    }`
 
 export const BenefitsGrid = styled.div`
     display: grid;

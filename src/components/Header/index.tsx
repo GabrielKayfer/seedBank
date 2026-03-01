@@ -1,4 +1,5 @@
 import { Container } from "../../styles/Container";
+import { Button } from "../Button/intex";
 import { Actions, HeaderContainer, HeaderContent, NavItem, NavList, RightGroup, Title } from "./styles";
 
 const Header = () => {
@@ -7,23 +8,23 @@ const Header = () => {
             <Container> 
             <HeaderContent>
             <div>
-                <Title><span>Seed</span>Bank</Title>
+                <Title $tone="PrimaryPurple"><span>Seed</span>Bank</Title>
             </div>
             <RightGroup>
                 <NavList>
-                    <NavItem>
+                    <NavItem href="#your-journey">
                         Your Journey
                     </NavItem>
-                    <NavItem>
+                    <NavItem href="#the-advantage">
                         The Advantage
                     </NavItem>
-                    <NavItem>
+                    <NavItem href="#help">
                         Help
                     </NavItem>
                 </NavList>
                 <Actions>
-                    <a href="#">Login</a>
-                    <button>Get Started</button>
+                    <Button size="sm" variant="ghost" as="a" href="/login">Login</Button>
+                    <Button size="sm" variant="primary" fullWidth>Get started</Button>
                 </Actions>
                 </RightGroup>
             </HeaderContent>

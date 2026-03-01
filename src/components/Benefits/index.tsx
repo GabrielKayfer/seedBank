@@ -2,7 +2,7 @@ import { BenefitsCard, BenefitsContainer, BenefitsGrid, BenefitsList, BenefitsTe
 
 const Benefits = () => {
     return (
-        <BenefitsContainer>
+        <BenefitsContainer id="the-advantage">
             <Title>Because trust grows over time and so do we.</Title>
             <BenefitsGrid>
                 <BenefitsCard>

@@ -31,10 +31,12 @@ The goal is to create a financial partner that grows alongside the user — from
 
 ## 📂 Project Structure
 
+```bash
 src/
   components/
   styles/
   assets/
+```md
 
 
 The project follows a component-based architecture with reusable UI sections and a centralized theme configuration.
@@ -48,6 +50,8 @@ Clone the repository and install dependencies:
 ```bash
 npm install
 npm run dev
+
+```md
 
 📌 Future Improvements
 

@@ -14,4 +14,12 @@ export const GlobalCss = createGlobalStyle`
     background-color: ${colors.SoftPurple};
     color: ${colors.Dark};
     padding-top: 40px;
+    }
+    
+    html {
+    scroll-behavior: smooth;
+}
+    
+section[id] {
+    scroll-margin-top: 100px;
     }`

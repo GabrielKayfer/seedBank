@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { titleBy, type Tone } from "../../styles/typography";
 
 export const HeroSection = styled.section`
     padding: 80px 0;
@@ -16,11 +17,8 @@ export const HeroContent = styled.div`
     background-color: ${colors.white};
     `
 
-export const Title = styled.h2`
-    color: ${colors.PrimaryPurple};
-    font-weight: 900;
-    font-style: italic;
-    font-size: 34px;
+export const Title = styled.h2<{ $tone?: Tone }>`
+    ${({ $tone = "PrimaryPurple" }) => titleBy("g", $tone)};
     padding-left: 30px;
     padding-top: 30px;
     

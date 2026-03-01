@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { titleBy, type Tone } from "../../styles/typography";
 
 export const TrustContainer = styled.div`
     display: grid;
@@ -28,24 +29,9 @@ export const TextContainer = styled.section`
     flex-direction: column;
     gap: 60px;
     align-items: center;
-    
-    button {
-        border: none;
-        border-radius: 99px;
-        padding: 10px 14px;
-        background: ${colors.PrimaryPurple};
-        color: ${colors.white};
-        font-weight: 600;
-        cursor: pointer;
+    `
 
-        &:hover {
-        opacity: 0.92;
-        }
-    }`
-
-export const Title = styled.h2`
-font-weight: 900;
-font-size: 34px;
-font-style: italic;
-font-family: "Inter", sans-serif;
-color: ${colors.PrimaryPurple};`
+export const Title = styled.h2<{ $tone?: Tone }>`
+    ${({ $tone = "PrimaryPurple" }) => titleBy("m", $tone)};
+    text-align: center;
+`;

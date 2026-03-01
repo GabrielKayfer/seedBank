@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { titleBy, type Tone } from "../../styles/typography";
 
 export const HeaderContainer = styled.header`
     background-color: ${colors.white};
     border-radius: 99px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-
+    position: sticky;
+    top: 20px;
+    z-index: 1;
     min-height: 80px;
     display: flex;
     align-items: center;
@@ -23,13 +26,13 @@ export const HeaderContent = styled.div`
     padding: 12px 16px;
 `;
 
-export const Title = styled.h1`
-    color: ${colors.PrimaryPurple};
+export const Title = styled.h1<{ $tone?: Tone }>`
+  ${({ $tone = "white" }) => titleBy("p", $tone)};
 
-    span {
-        color: ${colors.Emerald};
-}
-`
+  span {
+    color: ${({ theme }) => theme.colors.Emerald};
+    }
+`;
 
 export const RightGroup = styled.div`
     display: flex;
@@ -47,11 +50,12 @@ export const NavList = styled.ul`
     list-style: none;
 `;
 
-export const NavItem = styled.li`
+export const NavItem = styled.a`
     font-size: 0.95rem;
     color: ${colors.Dark};
     opacity: 0.85;
     cursor: pointer;
+    text-decoration: none;
 
     &:hover {
         color: ${colors.Emerald};
@@ -63,24 +67,4 @@ export const Actions = styled.div`
     display: flex;
     align-items: center;
     gap: 18px;
-
-    a {
-        text-decoration: none;
-        font-weight: bold; 
-        color: ${colors.Emerald};
-    }
-
-    button {
-        border: none;
-        border-radius: 99px;
-        padding: 10px 14px;
-        background: ${colors.PrimaryPurple};
-        color: ${colors.white};
-        font-weight: 600;
-        cursor: pointer;
-
-        &:hover {
-        opacity: 0.92;
-        }
-    }
 `;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { titleBy, type Tone } from "../../styles/typography";
 
 export const FooterContainer = styled.footer`
     display: flex;
@@ -41,12 +42,9 @@ export const ScanImg = styled.div`
     border-radius: 16px;`
     
 
-export const Title = styled.h4`
-    font-weight: 900;
-    font-size: 40px;
-    font-style: italic;
-    font-family: "Inter", sans-serif;
-    color: ${colors.whiteCold};` 
+export const Title = styled.h4<{ $tone?: Tone }>`
+    ${({ $tone = "whiteCold" }) => titleBy("g", $tone)};
+    }`
 
 export const ActionList = styled.ul`
     padding: 0;

@@ -1,6 +1,6 @@
-# MyBank – Student Banking Landing Page
+# SeedBank – Student Banking Landing Page
 
-MyBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.
+SeedBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.
 
 This project represents the front-end development of a modern landing page built around storytelling, trust, and long-term financial growth.
 
@@ -8,7 +8,7 @@ This project represents the front-end development of a modern landing page built
 
 ## 🎯 Product Vision
 
-MyBank follows a hybrid growth model — a banking experience that evolves with each stage of life:
+SeedBank follows a hybrid growth model — a banking experience that evolves with each stage of life:
 
 - Supervised accounts for children  
 - Independent financial tools for teens  

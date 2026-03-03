@@ -1,4 +1,4 @@
-```md
+
 # SeedBank – Student Banking Landing Page
 
 SeedBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.

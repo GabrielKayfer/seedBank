@@ -1,4 +1,3 @@
-
 ```md
 # SeedBank – Student Banking Landing Page
 
@@ -75,14 +74,16 @@ Initial MVP completed.
 The layout structure, design system foundation, and core storytelling sections are fully implemented.
 Further refinements and enhancements are planned.
 
-## UI System
+---
 
-This project now uses a centralized design system including:
+## 🎨 UI System
 
-- Theme tokens (spacing, radius, breakpoints)
-- Reusable Button component
-- Typography utilities
-- Anchor-based smooth navigation
+This project uses a centralized design system including:
 
+* Theme tokens (spacing, radius, breakpoints)
+* Reusable Button component
+* Typography utilities
+* Anchor-based smooth navigation
 
-````
+```
+```

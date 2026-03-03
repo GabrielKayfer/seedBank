@@ -1,17 +1,30 @@
 import styled from "styled-components";
 
-export const FeaturesContainer = styled.section`
+export const SectionBackground = styled.section<{
+  $variant: "fadeToWhite" | "fadeToTransparent";
+}>`
+  width: 100%;
   padding: ${({ theme }) => theme.spacing.xl} 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  background: linear-gradient(to bottom, #2d728f00 0%, #ffffff 100%);
+
+  background: ${({ $variant }) =>
+    $variant === "fadeToWhite"
+      ? "linear-gradient(to bottom, #2d728f00 0%, #ffffff 100%)"
+      : "linear-gradient(to bottom, #ffffff 100%, #2d728f00 0%)"};
 `;
+
 
 export const CardGrid = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
-
+  min-width: 0;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) 
+          and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    
+    
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
 `;
 
 export const Card = styled.div<{ $bg: string }>`
@@ -26,26 +39,27 @@ export const Card = styled.div<{ $bg: string }>`
 
   border-radius: ${({ theme }) => theme.radius.lg};
   background-color: ${({ theme }) => theme.colors.white};
+
   cursor: pointer;
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 200px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    display: none;
+  }
 `;
 
 export const CardTitle = styled.span`
   position: absolute;
-    bottom: 5px;
-    left: 50%;
-    transform: translateX(-50%);
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
 
-    color: ${({ theme }) => theme.colors.PrimaryPurple};
-    font-weight: 900;
-    font-size: 22px;
-    font-family: "Inter", sans-serif;
-    text-align: center;
-`;
-
-export const TextSectionContainer = styled.section`
-  width: 100%;
-  padding: ${({ theme }) => theme.spacing.xl} 0;
-  background: linear-gradient(to bottom, #ffffff 100%, #2d728f00 0%);
+  color: ${({ theme }) => theme.colors.PrimaryPurple};
+  font-weight: 900;
+  font-size: ${({ theme }) => theme.typography.fontSize.bodyMd};
+  font-family: "Inter", sans-serif;
+  text-align: center;
 `;
 
 export const TextGrid = styled.div`
@@ -77,12 +91,14 @@ export const ImgSection = styled.div<{ $bg: string }>`
 export const TextSection = styled.p`
   text-align: center;
   width: 100%;
-    font-weight: normal;
-    font-size: 22px;
-    font-family: "Poppins", sans-serif;
-    color: ${({ theme }) => theme.colors.Dark};
+
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+  color: ${({ theme }) => theme.colors.Dark};
 
   span {
     color: ${({ theme }) => theme.colors.Emerald};
   }
+
+  font-size: ${({ theme }) => theme.typography.fontSize.bodyLg};
 `;

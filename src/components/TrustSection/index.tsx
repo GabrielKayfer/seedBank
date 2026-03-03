@@ -3,9 +3,11 @@ import { Container } from "../../styles/Container";
 import branding from "../../assets/branding.png";
 import { TextContainer, Title, TrustContainer, Text, BrandingImg } from "./styles";
 import { Button } from "../Button/intex";
+import { Section } from "../../styles/Section";
 
 const TrustSection = () => {
     return (
+        <Section>
             <Container>
         <TrustContainer>
             <TextContainer>
@@ -18,6 +20,7 @@ const TrustSection = () => {
             <BrandingImg style={{ backgroundImage: `url(${branding})` }}></BrandingImg>
         </TrustContainer>
             </Container>
+        </Section>
     )
 }
 

@@ -5,17 +5,20 @@ import linkedinLogo from '../../assets/linkedinLogo.png';
 import tiktokLogo from '../../assets/tiktokLogo.png';
 import scan from '../../assets/scan.png';
 
-import { About, FooterContainer, NavSection, DownloadSection, FooterContent, NavItems, TitleSection, Title, Scan, ScanImg, ActionList } from './styles';
+import { About, FooterContainer, NavSection, DownloadSection, FooterContent, NavItems, TitleSection, Title, Scan, ScanImg, ActionList, FooterInner } from './styles';
+import { Section } from '../../styles/Section';
 
 const Footer = () => {
     return (
+        <Section $bg='DarkBlue' $py='md'>
         <FooterContainer>
+            <FooterInner>
             <FooterContent>
                 <DownloadSection>
                 <Title>The easy way to invest in the future</Title>
                 <Scan>
                     <span>Scan to download the app:</span>
-                    <ScanImg  style={{ backgroundImage: `url(${scan})` }}></ScanImg>
+                    <ScanImg  style={{ backgroundImage: `url(${scan})` }} />
                 </Scan>
             </DownloadSection>
             <About>
@@ -40,8 +43,10 @@ const Footer = () => {
                 </NavItems>
             </NavSection>
             </FooterContent>
+            </FooterInner>
             <p>&copy; 2026 SeedBank. All rights reserved.</p>
         </FooterContainer>
+        </Section>
     );
 }
 

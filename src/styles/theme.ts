@@ -6,7 +6,6 @@ export const theme = {
         sm: "480px",
         md: "768px",
         lg: "1024px",
-        xl: "1280px",
     },
     spacing: {
         xs: "4px",
@@ -28,14 +27,15 @@ export const theme = {
             inter: '"Inter", sans-serif',
             poppins: '"Poppins", sans-serif',
         },
-        fontSize: {
-            titleP: "22px",
-            titleM: "34px",
-            titleG: "38px",
-            bodySm: "14px",
-            bodyMd: "16px",
-            bodyLg: "18px",
-        },
+            fontSize: {
+    titleP: "clamp(18px, 2vw, 22px)",
+    titleM: "clamp(22px, 3vw, 34px)",
+    titleG: "clamp(28px, 4vw, 44px)",
+
+    bodySm: "clamp(12px, 1vw, 14px)",
+    bodyMd: "clamp(14px, 1.2vw, 16px)",
+    bodyLg: "clamp(16px, 1.4vw, 18px)",
+            },
         fontWeight: {
             regular: 400,
             medium: 500,
@@ -61,7 +61,7 @@ export const theme = {
         }
     },
     container: {
-        maxWidth: "1200px",
+        maxWidth: "1024px",
         padding: "16px",
     },
 } as const;

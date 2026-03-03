@@ -18,11 +18,12 @@ export const HeroContent = styled.div`
     `
 
 export const Title = styled.h2<{ $tone?: Tone }>`
-    ${({ $tone = "PrimaryPurple" }) => titleBy("g", $tone)};
+    ${({ $tone = "PrimaryPurple" }) => titleBy("m", $tone)};
     padding-left: 30px;
     padding-top: 30px;
     
     span {
         color: ${colors.Emerald};
     }
+}
 `

@@ -1,3 +1,5 @@
+
+```md
 # SeedBank – Student Banking Landing Page
 
 SeedBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.
@@ -31,13 +33,14 @@ The goal is to create a financial partner that grows alongside the user — from
 
 ## 📂 Project Structure
 
-```bash
-src/
-  components/
-  styles/
-  assets/
-```md
+```
 
+src/
+components/
+styles/
+assets/
+
+````
 
 The project follows a component-based architecture with reusable UI sections and a centralized theme configuration.
 
@@ -50,18 +53,23 @@ Clone the repository and install dependencies:
 ```bash
 npm install
 npm run dev
+````
 
-```md
+The development server will start locally using Vite.
 
-📌 Future Improvements
+---
 
-Add animations and micro-interactions
+## 📌 Future Improvements
 
-Improve accessibility (ARIA roles and semantic enhancements)
+* Add animations and micro-interactions
+* Improve accessibility (ARIA roles and semantic enhancements)
+* Implement dark mode
+* Integrate with a mock backend API
+* Deploy to Vercel
 
-Integrate with a mock backend API
+---
 
-✨ Project Status
+## ✨ Project Status
 
 Initial MVP completed.
 The layout structure, design system foundation, and core storytelling sections are fully implemented.
@@ -75,3 +83,6 @@ This project now uses a centralized design system including:
 - Reusable Button component
 - Typography utilities
 - Anchor-based smooth navigation
+
+
+````

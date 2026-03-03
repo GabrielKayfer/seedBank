@@ -86,4 +86,3 @@ This project uses a centralized design system including:
 * Anchor-based smooth navigation
 
 ```
-```

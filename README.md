@@ -85,4 +85,3 @@ This project uses a centralized design system including:
 * Typography utilities
 * Anchor-based smooth navigation
 
-```

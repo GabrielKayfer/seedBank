@@ -22,7 +22,6 @@ type ChatMessage = {
 };
 
 export function HelpModal({ open, onClose }: HelpModalProps) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: "Oi! Como posso ajudar?" },
@@ -47,6 +46,7 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
     setLoading(true);
     setMessages((prev) => [...prev, { role: "assistant", content: "Digitando..." }]);
     try {
+      const API_URL = import.meta.env.VITE_API_URL;
       const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: {

@@ -1,111 +1,213 @@
-# SeedBank – Student Banking Landing Page
+# SeedBank – AI-Powered Student Banking Concept
 
 SeedBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.
 
-This project represents the front-end development of a modern landing page built around storytelling, trust, and long-term financial growth.
+This project started as a modern landing page focused on storytelling and long-term financial growth.  
+During development, the idea evolved into something more interactive: an **AI support agent integrated directly into the application**.
+
+The result is a full-stack project combining a responsive frontend, a backend API, and an AI assistant capable of answering questions about the platform using a structured knowledge base.
 
 ---
 
-## 🎯 Product Vision
+# 🎯 Product Vision
 
 SeedBank follows a hybrid growth model — a banking experience that evolves with each stage of life:
 
-* Supervised accounts for children
-* Independent financial tools for teens
-* University-focused rewards and benefits
-* A long-term financial ecosystem built on transparency and security
+• supervised accounts for children  
+• independent financial tools for teens  
+• university-focused rewards and benefits  
+• a long-term financial ecosystem built on transparency and security  
 
 The goal is to create a financial partner that grows alongside the user — from their first savings to their first degree and beyond.
 
 ---
 
-## 🚀 Tech Stack
+# 🤖 AI Support Agent
 
-* React
-* TypeScript
-* Styled-components
-* Vite
-* CSS Grid & Flexbox
+A conversational assistant was added to help users quickly find information about SeedBank products.
 
----
+Instead of navigating the entire page, users can simply ask questions in a chat interface.
 
-## 🧱 UI Architecture
+The agent works using a **knowledge-based retrieval system**, where the backend searches for relevant information and provides that context to the AI model before generating a response.
 
-The project follows a component-based architecture with a structured layout system:
+Key characteristics:
 
-* **Section & Container pattern** for consistent spacing and full-width background control
-* **Responsive grid system** using CSS Grid with fluid layouts
-* **Centralized theme configuration** (colors, spacing, radius, breakpoints, typography)
-* **Reusable UI primitives** to maintain visual consistency
+• contextual responses based on a local knowledge base  
+• focused answers about SeedBank products and features  
+• integration directly into the website interface  
+• secure API communication through a backend server  
+
+This creates a **context-aware support experience directly within the application**.
 
 ---
 
-## 📱 Responsiveness
+# 🧠 Architecture Overview
 
-The layout is fully responsive and adapts across mobile, tablet, and desktop breakpoints.
+The project follows a **full-stack architecture** separating presentation, API logic, and AI integration.
 
-* Fluid grid layouts using `auto-fit` and `minmax`
-* Mobile-adaptive navigation
-* Scalable typography using a consistent text hierarchy
-* Structured spacing system powered by theme tokens
+```
+
+User
+↓
+React Frontend
+↓
+API Request
+↓
+Node.js Backend
+↓
+Knowledge Retrieval (RAG)
+↓
+OpenAI API
+↓
+Response returned to the interface
+
+```
+
+The backend acts as a secure intermediary between the frontend and the AI service.
+
+---
+
+# 🚀 Tech Stack
+
+## Frontend
+
+- React
+- TypeScript
+- Vite
+- Styled-components
+- CSS Grid & Flexbox
+
+## Backend
+
+- Node.js
+- Express.js
+- REST API
+
+## AI Integration
+
+- OpenAI API
+- Retrieval Augmented Generation (RAG)
+- Knowledge Base (JSON)
+
+## Infrastructure
+
+- Vercel (frontend deployment)
+- Render (backend API)
+- Git / GitHub
+
+---
+
+# 🧱 UI Architecture
+
+The frontend follows a component-based architecture with a structured layout system:
+
+• **Section & Container pattern** for consistent spacing  
+• responsive layout using CSS Grid  
+• centralized theme configuration (colors, spacing, breakpoints)  
+• reusable UI primitives for consistency  
+
+This ensures scalability while keeping the interface easy to maintain.
+
+---
+
+# 📱 Responsiveness
+
+The interface adapts across mobile, tablet, and desktop breakpoints.
+
+Features include:
+
+• fluid grid layouts using `auto-fit` and `minmax`  
+• mobile-adaptive navigation  
+• scalable typography hierarchy  
+• structured spacing system using theme tokens  
 
 Tested across common viewport widths (480px, 768px, 1024px and desktop screens).
 
 ---
 
-## 🎨 Design System
+# 🔐 API Security
 
-This project uses a centralized design system including:
+Several protective layers were implemented on the backend:
 
-* Theme tokens (spacing, radius, breakpoints, typography scale)
-* Structured typography utilities (`titleBy`, `bodyBy`)
-* Reusable Button component
-* Consistent visual hierarchy across sections
-* Anchor-based smooth navigation
+• rate limiting to prevent abuse  
+• application token authentication  
+• CORS configuration for controlled frontend access  
+• environment variables for sensitive credentials  
+
+These mechanisms help ensure safe communication between the application and the AI service.
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```
+
+frontend/
 src/
-  components/
-  styles/
-  assets/
-```
+components/
+styles/
+assets/
 
-The layout structure and styling are organized to separate visual layers (background wrappers, containers, and content grids) to ensure scalability and maintainability.
+server/
+index.js
+knowledge.json
+
+````
+
+The project separates UI components, styling layers, and backend logic to keep responsibilities clearly defined.
 
 ---
 
-## 🛠️ Running Locally
+# 🛠️ Running Locally
 
-Clone the repository and install dependencies:
+Clone the repository and install dependencies.
+
+Frontend:
 
 ```bash
 npm install
 npm run dev
+````
+
+Backend:
+
+```bash
+cd server
+npm install
+node index.js
 ```
 
-The development server will start locally using Vite.
+---
+
+# 🌐 Live Project
+
+Frontend
+[https://seed-bank-five.vercel.app](https://seed-bank-five.vercel.app)
+
+Backend API
+[https://seedbank-api.onrender.com](https://seedbank-api.onrender.com)
 
 ---
 
-## 📌 Future Improvements
+# 📌 Future Improvements
 
-* Add animations and micro-interactions
-* Improve accessibility (ARIA roles and semantic enhancements)
-* Implement dark mode
-* Integrate with a mock backend API
-* Deploy to Vercel
+• conversation memory for the AI agent
+• vector-based semantic search for improved retrieval
+• improved accessibility (ARIA roles and semantics)
+• analytics for user queries
+• enhanced UI micro-interactions
 
 ---
 
-## ✨ Project Status
+# ✨ Project Status
 
-Responsive layout system implemented.
-Typography scale standardized.
-Design system structure consolidated.
+Responsive landing page implemented
+AI support agent integrated
+Backend API deployed
+Full-stack architecture established
 
-Further enhancements and feature expansions are planned.
+The project continues to evolve as new features and improvements are explored.
 
+
+Isso faz o repositório parecer **nível projeto de empresa**.
+```

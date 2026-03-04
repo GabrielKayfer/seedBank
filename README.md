@@ -207,7 +207,3 @@ Backend API deployed
 Full-stack architecture established
 
 The project continues to evolve as new features and improvements are explored.
-
-
-Isso faz o repositório parecer **nível projeto de empresa**.
-```

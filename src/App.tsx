@@ -5,12 +5,19 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import InviteSection from "./components/InviteSection";
 import TrustSection from "./components/TrustSection";
+import { useState } from "react";
+import { HelpModal } from "./components/HelpModal"; 
+
 
 
 function App() {
+
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
+
   return (
     <>
-    <Header/>
+    <Header onHelpClick={() => setIsHelpOpen(true)}/>
+    <HelpModal open={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
     <Hero/>
     <Features/>
     <TrustSection/>

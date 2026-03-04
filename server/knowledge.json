@@ -1,0 +1,405 @@
+{
+    "meta": {
+        "name": "SeedBank Agent Knowledge Base",
+        "version": "1.0.0",
+        "language": "pt-BR",
+        "created_at": "2026-03-04T00:00:00Z",
+        "source": "README do projeto SeedBank (landing page) + expansão de portfólio de produtos conforme filosofia do projeto",
+        "scope": "Responder somente sobre o SeedBank e seu ecossistema (contas, benefícios, planos e funcionalidades)."
+    },
+    "brand": {
+        "company_name": "SeedBank",
+        "tagline": "Um banco digital que cresce com você.",
+        "positioning": "Banco digital educacional focado em famílias, estudantes e evolução financeira por fases da vida.",
+        "pillars": [
+            {
+                "name": "Família e confiança",
+                "description": "Ferramentas de supervisão e acompanhamento para responsáveis, criando segurança e aprendizado conjunto."
+            },
+            {
+                "name": "Conforto e simplicidade",
+                "description": "Experiência clara e leve: organização do dinheiro sem complexidade, com linguagem acessível."
+            },
+            {
+                "name": "Crescimento ao longo da vida",
+                "description": "Produtos evoluem por etapas: infância → adolescência → universidade → vida adulta jovem."
+            },
+            {
+                "name": "Educação financeira prática",
+                "description": "Aprendizado embutido no uso: metas, hábitos, limites e recompensas ligadas a escolhas saudáveis."
+            }
+        ],
+        "voice_and_tone": {
+            "style": "claro, acolhedor, educativo, direto",
+            "do": [
+                "explicar com exemplos do cotidiano",
+                "recomendar produtos SeedBank de acordo com a fase de vida",
+                "reforçar segurança e supervisão quando envolver menores",
+                "manter foco em conforto, família e trajetória de vida"
+            ],
+            "dont": [
+                "fazer promessas financeiras garantidas",
+                "falar sobre bancos concorrentes, investimentos externos, ou assuntos fora do SeedBank",
+                "coletar dados pessoais (CPF, senha, número completo de cartão)"
+            ]
+        }
+    },
+    "vision": {
+        "product_vision": "Experiência bancária híbrida que evolui com cada etapa de vida, combinando supervisão, autonomia e benefícios educacionais.",
+        "growth_trajectory": [
+            {
+                "stage": "Infância",
+                "goal": "Primeiro contato com dinheiro e hábito de poupar",
+                "keyword": "aprendizado"
+            },
+            {
+                "stage": "Adolescência",
+                "goal": "Responsabilidade e decisões conscientes",
+                "keyword": "autonomia guiada"
+            },
+            {
+                "stage": "Universidade",
+                "goal": "Independência e organização de vida",
+                "keyword": "estrutura"
+            },
+            {
+                "stage": "Adulto jovem",
+                "goal": "Planejamento e estabilidade",
+                "keyword": "futuro"
+            }
+        ],
+        "why_it_matters": [
+            "Ajuda famílias a transformar mesada em educação financeira.",
+            "Dá conforto ao jovem para organizar gastos e metas sem planilhas complexas.",
+            "Cria continuidade: o usuário não troca de 'banco' a cada fase — o SeedBank acompanha a vida."
+        ]
+    },
+    "products": [
+        {
+            "id": "seedkids",
+            "name": "SeedKids",
+            "audience": "Crianças (6–12) com responsáveis",
+            "purpose": "Aprender o valor do dinheiro e criar hábitos de poupança com segurança.",
+            "core_value": "Supervisão + educação lúdica",
+            "features": [
+                {
+                    "name": "Mesada Inteligente",
+                    "description": "Envio de mesada recorrente (semanal/mensal) ou por tarefas, com histórico e limites."
+                },
+                {
+                    "name": "Cofrinho Digital",
+                    "description": "Metas visuais (ex.: brinquedo, passeio) com progresso simples e incentivo a poupar."
+                },
+                {
+                    "name": "Painel dos Pais",
+                    "description": "Acompanhamento de gastos, limites, aprovação de compras e notificações."
+                },
+                {
+                    "name": "Regras de Uso",
+                    "description": "Categorias permitidas/bloqueadas e horários de uso definidos pelo responsável."
+                }
+            ],
+            "benefits": [
+                "Segurança para a família",
+                "Aprendizado sem pressão",
+                "Rotina de poupança desde cedo"
+            ],
+            "example_use_cases": [
+                "Pais enviam mesada semanal e definem limite diário.",
+                "Criança cria meta para um brinquedo e acompanha o progresso.",
+                "Responsável aprova uma compra específica no app."
+            ]
+        },
+        {
+            "id": "seedteen",
+            "name": "SeedTeen",
+            "audience": "Adolescentes (13–17) com supervisão opcional",
+            "purpose": "Construir responsabilidade financeira com autonomia guiada e benefícios ligados à educação.",
+            "core_value": "Autonomia + recompensas educacionais",
+            "features": [
+                {
+                    "name": "Cartão SeedTeen",
+                    "description": "Cartão digital/físico com limite e controle ajustável. Opção de supervisão por responsável."
+                },
+                {
+                    "name": "Mesada Programável",
+                    "description": "Recebimento recorrente com regras: porcentagem para gastar, poupar e metas."
+                },
+                {
+                    "name": "Cashback Educacional",
+                    "description": "Cashback em categorias como papelaria, livraria, cursos online e plataformas de estudo."
+                },
+                {
+                    "name": "Metas de Conquista",
+                    "description": "Metas de compra (ex.: notebook) com plano de aporte semanal e alertas."
+                },
+                {
+                    "name": "Controle de Gastos",
+                    "description": "Categorias e relatórios simples, com alertas de orçamento e hábitos."
+                }
+            ],
+            "partnerships": [
+                {
+                    "category": "Educação e cursos",
+                    "examples": [
+                        "descontos em cursos de idiomas",
+                        "descontos em cursos de tecnologia",
+                        "descontos em preparatórios/ENEM",
+                        "planos especiais em plataformas de estudo"
+                    ],
+                    "note": "Parceiros variam por região e campanha; o app lista as ofertas ativas."
+                },
+                {
+                    "category": "Materiais e ferramentas",
+                    "examples": [
+                        "cashback em papelarias e livrarias",
+                        "descontos em livros digitais",
+                        "descontos em softwares educacionais"
+                    ]
+                }
+            ],
+            "benefits": [
+                "Aprende a planejar compras e prioridades",
+                "Recompensas orientadas para estudo",
+                "Família pode acompanhar sem sufocar a autonomia"
+            ],
+            "example_use_cases": [
+                "Adolescente recebe mesada mensal com 20% reservado automaticamente para meta.",
+                "Compra de material escolar gera cashback educacional.",
+                "Relatório mostra gasto alto com delivery e sugere ajuste de orçamento."
+            ]
+        },
+        {
+            "id": "seedstudent",
+            "name": "SeedStudent",
+            "audience": "Universitários e estudantes (18+)",
+            "purpose": "Apoiar a vida acadêmica com organização financeira, benefícios e planejamento.",
+            "core_value": "Estrutura + benefícios para estudar melhor",
+            "features": [
+                {
+                    "name": "Cartão Student",
+                    "description": "Benefícios em categorias típicas: transporte, alimentação, livrarias e software educacional."
+                },
+                {
+                    "name": "Orçamento Mensal Guiado",
+                    "description": "Configuração rápida do orçamento por categorias com alertas e metas."
+                },
+                {
+                    "name": "Assinaturas e Recorrências",
+                    "description": "Gestão de assinaturas (streaming, ferramentas) com lembretes e otimização."
+                },
+                {
+                    "name": "Painel de Despesas Universitárias",
+                    "description": "Visão clara de gastos fixos (aluguel, transporte) vs variáveis (lazer, alimentação)."
+                }
+            ],
+            "programs": [
+                {
+                    "name": "SeedScholar",
+                    "description": "Programa de incentivo por hábitos: conclusão de módulos de educação financeira, metas cumpridas e uso consciente.",
+                    "rewards": [
+                        "pontos convertidos em descontos e benefícios",
+                        "cashback adicional em educação (campanhas)"
+                    ]
+                },
+                {
+                    "name": "SeedCareer",
+                    "description": "Ferramentas para transição para o trabalho: planejamento de renda, reserva e metas profissionais."
+                }
+            ],
+            "partnerships": [
+                {
+                    "category": "Cursos e carreira",
+                    "examples": [
+                        "desconto em certificações",
+                        "desconto em plataformas de portfólio e produtividade",
+                        "benefícios em cursos reconhecidos (variam por campanha)"
+                    ],
+                    "note": "Ofertas são atualizadas no app conforme parcerias ativas."
+                }
+            ],
+            "benefits": [
+                "Conforto para organizar a vida financeira sem complicar",
+                "Benefícios alinhados ao estudo",
+                "Ajuda a reduzir desperdícios e priorizar metas"
+            ],
+            "example_use_cases": [
+                "Usuário configura orçamento e recebe alerta antes de estourar alimentação.",
+                "Assinatura anual de software educacional entra em categoria específica e recebe cashback.",
+                "Plano de despesas mostra quanto sobra para lazer sem comprometer contas fixas."
+            ]
+        },
+        {
+            "id": "seedfuture",
+            "name": "SeedFuture",
+            "audience": "Todos os usuários (com foco em 16+)",
+            "purpose": "Planejamento financeiro de longo prazo conectado às metas de vida.",
+            "core_value": "Continuidade + futuro",
+            "features": [
+                {
+                    "name": "Metas de Vida",
+                    "description": "Objetivos como intercâmbio, primeiro notebook, reserva de emergência, primeira moradia."
+                },
+                {
+                    "name": "Investimento Automático (opcional)",
+                    "description": "Parte do cashback e/ou aportes programados podem ser direcionados para uma carteira conservadora do SeedBank.",
+                    "disclaimer": "Não há garantia de retorno; depende do produto e das condições vigentes."
+                },
+                {
+                    "name": "Reserva de Emergência",
+                    "description": "Construção guiada com recomendação baseada em despesas mensais."
+                }
+            ],
+            "benefits": [
+                "Transforma pequenas ações em crescimento real",
+                "Mantém o usuário no mesmo ecossistema ao longo da vida",
+                "Dá previsibilidade e reduz ansiedade financeira"
+            ],
+            "example_use_cases": [
+                "Usuário destina 10% do cashback para reserva.",
+                "Planeja intercâmbio com aportes semanais.",
+                "Cria meta de 6 meses de despesas para emergências."
+            ]
+        }
+    ],
+    "plans": [
+        {
+            "id": "seedfree",
+            "name": "SeedFree",
+            "price": "R$0",
+            "best_for": "Começar e testar",
+            "includes": [
+                "Conta digital",
+                "Cofrinho/Metas básicas",
+                "Relatórios simples",
+                "Acesso a parcerias (quando disponíveis)"
+            ]
+        },
+        {
+            "id": "seedplus",
+            "name": "SeedPlus",
+            "price": "mensal (variável por campanha)",
+            "best_for": "Famílias e estudantes que querem mais benefícios",
+            "includes": [
+                "Cashback educacional ampliado (campanhas)",
+                "Ferramentas avançadas de orçamento",
+                "Metas com planos automáticos",
+                "Alertas e insights mais detalhados"
+            ],
+            "note": "Valores e disponibilidade podem variar conforme região e promoções."
+        },
+        {
+            "id": "seedfamily",
+            "name": "SeedFamily",
+            "price": "mensal (por grupo familiar)",
+            "best_for": "Famílias com mais de um dependente",
+            "includes": [
+                "Múltiplas contas SeedKids/SeedTeen",
+                "Painel unificado do responsável",
+                "Regras por dependente",
+                "Mesadas e metas separadas"
+            ],
+            "note": "Disponibilidade depende do lançamento do produto."
+        }
+    ],
+    "security_and_permissions": {
+        "principles": [
+            "Supervisão para menores de idade",
+            "Controles de limite e categorias",
+            "Transparência: histórico e notificações",
+            "Privacidade: não solicitar dados sensíveis em chat"
+        ],
+        "parental_controls": [
+            "aprovação de compras",
+            "limites por período",
+            "bloqueio de categorias",
+            "alertas em tempo real"
+        ],
+        "agent_guardrails": {
+            "allowed_topics": [
+                "produtos SeedBank (SeedKids, SeedTeen, SeedStudent, SeedFuture)",
+                "planos SeedFree/SeedPlus/SeedFamily",
+                "benefícios, cashback e parcerias (em nível conceitual)",
+                "como usar metas, orçamento, mesada e painel dos pais",
+                "visão e filosofia da empresa"
+            ],
+            "disallowed_topics": [
+                "conselho financeiro personalizado",
+                "investimentos externos/concorrentes",
+                "coleta de dados pessoais sensíveis",
+                "assuntos não relacionados ao SeedBank"
+            ],
+            "fallback_response_ptbr": "Eu consigo ajudar apenas com informações sobre o SeedBank (produtos, planos e funcionalidades)."
+        }
+    },
+    "ui_and_website_context": {
+        "site_type": "Landing page com storytelling e navegação por âncoras",
+        "tech_stack": [
+            "React",
+            "TypeScript",
+            "styled-components",
+            "Vite"
+        ],
+        "design_system": [
+            "theme tokens (cores, espaçamento, tipografia, breakpoints)",
+            "componentes reutilizáveis (Button etc.)",
+            "layout Section/Container",
+            "responsivo (mobile/tablet/desktop)"
+        ],
+        "future_improvements": [
+            "animações e micro-interações",
+            "melhorias de acessibilidade (ARIA e semântica)",
+            "dark mode",
+            "mock backend API"
+        ]
+    },
+    "faq": [
+        {
+            "q": "O SeedBank é para quem?",
+            "a": "Para famílias e estudantes: crianças com supervisão (SeedKids), adolescentes com autonomia guiada (SeedTeen), universitários com organização e benefícios (SeedStudent) e planejamento de longo prazo (SeedFuture)."
+        },
+        {
+            "q": "Como funciona a mesada?",
+            "a": "No SeedKids e SeedTeen, a mesada pode ser programada (semanal/mensal) e pode ter regras, como separar uma parte para metas e poupança."
+        },
+        {
+            "q": "O que é cashback educacional?",
+            "a": "É um benefício que devolve parte do valor gasto em categorias ligadas a educação, como papelaria, livraria e cursos (quando elegíveis)."
+        },
+        {
+            "q": "Vocês têm parcerias com cursos?",
+            "a": "Sim. O SeedBank trabalha com campanhas e parcerias educacionais (idiomas, tecnologia, plataformas de estudo). As ofertas ativas aparecem no app e podem variar por região."
+        },
+        {
+            "q": "Pais conseguem acompanhar a conta de menores?",
+            "a": "Sim. Há um Painel dos Pais com limites, aprovações, categorias permitidas e notificações."
+        },
+        {
+            "q": "Vocês garantem retorno em investimento automático?",
+            "a": "Não. Qualquer produto de investimento depende de condições e não tem retorno garantido. O SeedFuture oferece a opção de automatizar aportes e organizar objetivos."
+        }
+    ],
+    "conversation_patterns": {
+        "recommendation_logic": [
+            "Identificar a fase do usuário (idade/etapa: criança, teen, universitário, adulto jovem).",
+            "Mapear objetivo principal (mesada, poupar, organizar gastos, descontos em cursos, planejar futuro).",
+            "Sugerir 1 produto principal e 1 complemento (ex.: SeedTeen + SeedFuture metas).",
+            "Explicar benefícios em linguagem simples, com exemplo prático.",
+            "Se for menor, enfatizar supervisão e controles."
+        ],
+        "examples": [
+            {
+                "user": "Quero um produto para meu filho de 10 anos aprender a economizar.",
+                "assistant": "Recomendo o SeedKids: tem Cofrinho Digital para metas e Mesada Inteligente com Painel dos Pais para acompanhar e colocar limites."
+            },
+            {
+                "user": "Tenho 16 anos e quero comprar um notebook com meu dinheiro.",
+                "assistant": "O SeedTeen combina bem: você define a meta do notebook, programa aportes e ainda ganha cashback educacional em compras de material e cursos quando elegíveis."
+            },
+            {
+                "user": "Sou universitário e me perco com gastos do mês.",
+                "assistant": "O SeedStudent é ideal: orçamento guiado por categorias, alertas e painel de despesas para separar fixos e variáveis."
+            }
+        ]
+    }
+}

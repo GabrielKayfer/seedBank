@@ -11,7 +11,10 @@ import {
   Hamburger,
 } from "./styles";
 
-const Header = () => {
+type HeaderProps = { onHelpClick: () => void };
+
+const Header = (props: HeaderProps) => {
+  
   return (
     <HeaderContainer>
       <HeaderBar>
@@ -35,7 +38,7 @@ const Header = () => {
                 <NavItem href="#the-advantage">The Advantage</NavItem>
               </li>
               <li>
-                <NavItem href="#help">Help</NavItem>
+                <Button size="sm" variant="ghost" as="button" type="button" onClick={props.onHelpClick}>Help</Button>
               </li>
             </NavList>
 

@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
 app.use(cors({
-  origin: "https://seed-bank-five.vercel.app/", // ajuste para o seu frontend
+  origin: "https://seed-bank-five.vercel.app/", 
   credentials: true,
 }));
 

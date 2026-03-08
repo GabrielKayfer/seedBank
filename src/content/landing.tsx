@@ -16,6 +16,13 @@ type JourneyStep = {
   text: ReactNode;
 };
 
+type BenefitCardContent = {
+  title: string;
+  description: string;
+  items: readonly string[];
+  highlight?: boolean;
+};
+
 export const headerNavItems = [
   { label: "Your Journey", href: "#your-journey" },
   { label: "The Advantage", href: "#the-advantage" },
@@ -64,7 +71,7 @@ export const journeySteps: readonly JourneyStep[] = [
   },
 ] as const;
 
-export const benefitCards = [
+export const benefitCards: readonly BenefitCardContent[] = [
   {
     title: "Supervised Start",
     description:

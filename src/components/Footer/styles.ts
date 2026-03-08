@@ -1,4 +1,4 @@
-import styled from "styled-components";
+﻿import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { titleBy, type Tone } from "../../styles/typography";
 
@@ -107,15 +107,19 @@ export const Title = styled.h4<{ $tone?: Tone }>`
 export const ActionList = styled.ul`
   padding: 0;
   margin: 0;
+`;
 
-  li {
-    list-style: none;
-    font-size: ${({ theme }) => theme.typography.fontSize.bodySm};
-    font-weight: normal;
-    font-family: ${({ theme }) => theme.typography.fontFamily.poppins};
-    color: ${colors.whiteCold};
-    cursor: pointer;
-    margin-bottom: 8px;
+export const ActionItem = styled.a`
+  display: inline-block;
+  margin-bottom: 8px;
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.typography.fontSize.bodySm};
+  font-weight: normal;
+  font-family: ${({ theme }) => theme.typography.fontFamily.poppins};
+  color: ${colors.whiteCold};
+
+  &:hover {
+    color: ${colors.Emerald};
   }
 `;
 
@@ -144,14 +148,20 @@ export const NavSection = styled.section`
 export const NavItems = styled.div`
   display: flex;
   gap: 10px;
+`;
+
+export const SocialItem = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   img {
     width: 24px;
     cursor: pointer;
+  }
 
-    &:hover {
-      opacity: 0.8;
-    }
+  &:hover img {
+    opacity: 0.8;
   }
 `;
 

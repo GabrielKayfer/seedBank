@@ -1,53 +1,62 @@
-import youtubeLogo from '../../assets/youtubeLogo.png';
-import xLogo from '../../assets/xLogo.png';
-import facebookLogo from '../../assets/facebookLogo.svg';
-import linkedinLogo from '../../assets/linkedinLogo.png';
-import tiktokLogo from '../../assets/tiktokLogo.png';
-import scan from '../../assets/scan.png';
-
-import { About, FooterContainer, NavSection, DownloadSection, FooterContent, NavItems, TitleSection, Title, Scan, ScanImg, ActionList, FooterInner } from './styles';
-import { Section } from '../../styles/Section';
+﻿import scan from "../../assets/scan.png";
+import { footerLinks, socialLinks } from "../../content/landing";
+import { Section } from "../../styles/Section";
+import {
+  About,
+  ActionItem,
+  ActionList,
+  DownloadSection,
+  FooterContainer,
+  FooterContent,
+  FooterInner,
+  NavItems,
+  NavSection,
+  Scan,
+  ScanImg,
+  SocialItem,
+  Title,
+  TitleSection,
+} from "./styles";
 
 const Footer = () => {
-    return (
-        <Section $bg='DarkBlue' $py='md'>
-        <FooterContainer>
-            <FooterInner>
-            <FooterContent>
-                <DownloadSection>
-                <Title>The easy way to invest in the future</Title>
-                <Scan>
-                    <span>Scan to download the app:</span>
-                    <ScanImg  style={{ backgroundImage: `url(${scan})` }} />
-                </Scan>
+  return (
+    <Section $bg="DarkBlue" $py="md">
+      <FooterContainer>
+        <FooterInner>
+          <FooterContent>
+            <DownloadSection>
+              <Title>The easy way to invest in the future</Title>
+              <Scan>
+                <span>Scan to download the app:</span>
+                <ScanImg style={{ backgroundImage: `url(${scan})` }} />
+              </Scan>
             </DownloadSection>
             <About>
-                <TitleSection>About SeedBank</TitleSection>
-                <ActionList>
-                    <li>Legal</li>
-                    <li>Licenses</li>
-                    <li>Security</li>
-                    <li>Careers</li>
-                    <li>Support</li>
-                    <li>Status</li>
-                </ActionList>
+              <TitleSection>About SeedBank</TitleSection>
+              <ActionList>
+                {footerLinks.map((item) => (
+                  <li key={item}>
+                    <ActionItem href="#support">{item}</ActionItem>
+                  </li>
+                ))}
+              </ActionList>
             </About>
             <NavSection>
-                <TitleSection>Stay in touch</TitleSection>
-                <NavItems>
-                    <img src={youtubeLogo} alt="YouTube" />
-                    <img src={xLogo} alt="X (Twitter)" />
-                    <img src={facebookLogo} alt="Facebook" />
-                    <img src={linkedinLogo} alt="LinkedIn" />
-                    <img src={tiktokLogo} alt="TikTok" />
-                </NavItems>
+              <TitleSection>Stay in touch</TitleSection>
+              <NavItems>
+                {socialLinks.map((item) => (
+                  <SocialItem key={item.label} href="#support" aria-label={item.label}>
+                    <img src={item.icon} alt={item.label} />
+                  </SocialItem>
+                ))}
+              </NavItems>
             </NavSection>
-            </FooterContent>
-            </FooterInner>
-            <p>&copy; 2026 SeedBank. All rights reserved.</p>
-        </FooterContainer>
-        </Section>
-    );
-}
+          </FooterContent>
+        </FooterInner>
+        <p>&copy; 2026 SeedBank. All rights reserved.</p>
+      </FooterContainer>
+    </Section>
+  );
+};
 
 export default Footer;

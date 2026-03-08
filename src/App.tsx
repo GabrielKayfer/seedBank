@@ -1,31 +1,30 @@
+import { useState } from "react";
 import Benefits from "./components/Benefits";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { HelpModal } from "./components/HelpModal";
 import Hero from "./components/Hero";
 import InviteSection from "./components/InviteSection";
 import TrustSection from "./components/TrustSection";
-import { useState } from "react";
-import { HelpModal } from "./components/HelpModal"; 
-
-
 
 function App() {
-
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const openHelp = () => setIsHelpOpen(true);
+  const closeHelp = () => setIsHelpOpen(false);
 
   return (
     <>
-    <Header onHelpClick={() => setIsHelpOpen(true)}/>
-    <HelpModal open={isHelpOpen} onClose={() => setIsHelpOpen(false)} />
-    <Hero/>
-    <Features/>
-    <TrustSection/>
-    <Benefits/>
-    <InviteSection/>
-    <Footer/>
+      <Header onHelpClick={openHelp} />
+      <HelpModal open={isHelpOpen} onClose={closeHelp} />
+      <Hero />
+      <Features />
+      <TrustSection onContactClick={openHelp} />
+      <Benefits />
+      <InviteSection onOpenAccountClick={openHelp} />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

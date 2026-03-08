@@ -14,9 +14,9 @@ export const HeaderContainer = styled.header`
 `;
 
 export const HeaderBar = styled.div`
-  width: calc(100% - 32px); 
+  width: calc(100% - 32px);
   max-width: 1240px;
-  
+
   background-color: ${colors.white};
   border-radius: 99px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
@@ -124,4 +124,49 @@ export const Hamburger = styled.button`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: none;
   }
+`;
+
+export const MobileMenuOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  background: rgba(18, 47, 59, 0.2);
+  padding: 104px 16px 16px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+export const MobileMenu = styled.div`
+  width: min(100%, 420px);
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 24px;
+  background: ${colors.white};
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.14);
+
+  display: grid;
+  gap: 12px;
+`;
+
+export const MobileMenuItem = styled.a`
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: ${({ theme }) => theme.colors.whiteCold};
+  color: ${colors.Dark};
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: ${colors.PrimaryPurple};
+  }
+`;
+
+export const MobileMenuActions = styled.div`
+  display: grid;
+  gap: 12px;
+  margin-top: 4px;
 `;

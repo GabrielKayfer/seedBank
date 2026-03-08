@@ -1,17 +1,25 @@
 import { useMemo } from "react";
 import { ChatKit, useChatKit } from "@openai/chatkit-react";
 import {
-  Overlay,
-  ModalBox,
-  CloseButton,
-  ModalHeader,
   ChatContainer,
+  CloseButton,
+  ModalBox,
+  ModalHeader,
+  Overlay,
 } from "./styles";
 
 type HelpModalProps = {
   open: boolean;
   onClose: () => void;
 };
+
+function getSessionEndpoint() {
+  const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, "");
+
+  return configuredApiUrl
+    ? `${configuredApiUrl}/api/chatkit/session`
+    : "/api/chatkit/session";
+}
 
 function getOrCreateDeviceId() {
   const storageKey = "seedbank_device_id";
@@ -34,9 +42,7 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
           return existing;
         }
 
-        const API_URL = import.meta.env.VITE_API_URL;
-
-        const response = await fetch(`${API_URL}/api/chatkit/session`, {
+        const response = await fetch(getSessionEndpoint(), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -61,13 +67,13 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
 
   return (
     <Overlay onClick={onClose}>
-      <ModalBox onClick={(e) => e.stopPropagation()}>
+      <ModalBox onClick={(event) => event.stopPropagation()}>
         <ModalHeader>
           <div>
             <h2>Ajuda</h2>
-            <p>Tire dúvidas sobre o SeedBank.</p>
+            <p>Tire dúvidas sobre o SeedBank ou peça ajuda para abrir sua conta.</p>
           </div>
-          <CloseButton onClick={onClose} aria-label="Fechar">
+          <CloseButton onClick={onClose} aria-label="Fechar" type="button">
             ×
           </CloseButton>
         </ModalHeader>

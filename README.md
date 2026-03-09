@@ -1,64 +1,137 @@
-# MyBank – Student Banking Landing Page
+# SeedBank
 
-MyBank is a student-focused digital banking concept designed to grow with users from childhood to university and beyond.
+SeedBank is a fintech portfolio project built around three connected experiences:
 
-This project represents the front-end development of a modern landing page built around storytelling, trust, and long-term financial growth.
+- a public landing page
+- an authentication flow
+- a protected client area backed by a fake API
 
----
+The project is designed to look and behave more like a real product than a static marketing page, while still keeping the backend simple enough for portfolio use.
 
-## 🎯 Product Vision
+## Current Scope
 
-MyBank follows a hybrid growth model — a banking experience that evolves with each stage of life:
+The project currently includes:
 
-- Supervised accounts for children  
-- Independent financial tools for teens  
-- University-focused rewards and benefits  
-- A long-term financial ecosystem built on transparency and security  
+- public landing page with marketing sections
+- dedicated `/login` route with its own layout
+- protected `/app` client area
+- fake authentication flow with token storage
+- fake customer profile served by the backend
+- loading states for session restore and protected navigation
+- footer placeholder items without active routes
 
-The goal is to create a financial partner that grows alongside the user — from their first savings to their first degree and beyond.
+## Tech Stack
 
----
+Frontend:
 
-## 🚀 Tech Stack
+- React 19
+- TypeScript
+- Vite
+- styled-components
 
-- React  
-- TypeScript  
-- Styled-components  
-- Vite  
-- CSS Grid & Flexbox  
+Backend:
 
----
+- Node.js
+- Express
+- CORS
+- express-rate-limit
 
-## 📂 Project Structure
+## Project Structure
 
+```text
 src/
   components/
+  content/
+  context/
+  layouts/
+  pages/
+  router/
+  services/
   styles/
-  assets/
 
+server/
+  src/
+    config/
+    controllers/
+    data/
+    middlewares/
+    routes/
+    services/
+```
 
-The project follows a component-based architecture with reusable UI sections and a centralized theme configuration.
+## Routes
 
----
+Frontend routes currently in use:
 
-## 🛠️ Running Locally
+- `/` public landing page
+- `/login` authentication page
+- `/app` protected client area
 
-Clone the repository and install dependencies:
+## Local Development
+
+Frontend:
 
 ```bash
 npm install
 npm run dev
+```
 
-📌 Future Improvements
+Backend:
 
-Add animations and micro-interactions
+```bash
+cd server
+npm install
+npm run dev
+```
 
-Improve accessibility (ARIA roles and semantic enhancements)
+## Environment Variables
 
-Integrate with a mock backend API
+Frontend expects:
 
-✨ Project Status
+```bash
+VITE_API_URL=http://localhost:3001
+```
 
-Initial MVP completed.
-The layout structure, design system foundation, and core storytelling sections are fully implemented.
-Further refinements and enhancements are planned.
+Backend currently uses environment variables such as:
+
+```bash
+PORT=3001
+OPENAI_API_KEY=your_key
+OPENAI_WORKFLOW_ID=your_workflow_id
+```
+
+## Fake Auth Flow
+
+The backend exposes fake auth endpoints for portfolio/demo purposes:
+
+- `POST /api/v1/auth/login`
+- `GET /api/v1/auth/me`
+- `POST /api/v1/auth/logout`
+
+Current demo credentials:
+
+- login: `client@seedbank.com`
+- password: `Seed1234`
+
+## Deployment Notes
+
+The frontend is intended for Vercel and the backend for Render.
+
+For production to work correctly:
+
+- `VITE_API_URL` in Vercel must point to the Render backend URL
+- the backend CORS configuration in Render must allow the active Vercel domain
+- if the Vercel deployment URL changes, the backend must be updated accordingly
+
+Without that alignment, authentication and help/chat requests will fail in production.
+
+## Current Status
+
+The project is no longer just an initial landing page MVP.
+
+Current phase:
+
+- landing structure consolidated
+- auth flow implemented with mock backend support
+- client dashboard experience implemented
+- visual polish and deployment alignment in progress

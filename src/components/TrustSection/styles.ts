@@ -6,17 +6,21 @@ export const TrustContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    align-items: center; 
+    align-items: center;
+    padding: 48px;
+    border-radius: 32px;
+    backdrop-filter: blur(10px);
     
     @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-        flex-direction: column;
-        padding: 0 20px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 32px 20px;
 }
         @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
         display: block;
-        padding: 0;
+        padding: 24px 16px;
 }
-    `
+    `;
 
 export const Text = styled.p`
     font-weight: 500;
@@ -24,7 +28,7 @@ export const Text = styled.p`
     color: ${colors.PrimaryPurple};
     text-align: center;
     
-    font-size: ${({ theme }) => theme.typography.fontSize.bodyLg};`
+    font-size: ${({ theme }) => theme.typography.fontSize.bodyLg};`;
 
 export const BrandingImg = styled.div`
     width: 100%;
@@ -33,13 +37,13 @@ export const BrandingImg = styled.div`
     background-size: 250% auto;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 16px;
+    border-radius: 24px;
     
     @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
         height: 200px;
         background-position: center;
         background-size: cover;
-}`
+}`;
 
 export const TextContainer = styled.section`
     display: flex;
@@ -48,8 +52,9 @@ export const TextContainer = styled.section`
     align-items: center;
     @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
         margin-bottom: 20px;
+        gap: 32px;
 }
-    `
+    `;
 
 export const Title = styled.h2<{ $tone?: Tone }>`
     ${({ $tone = "PrimaryPurple" }) => titleBy("g", $tone)};

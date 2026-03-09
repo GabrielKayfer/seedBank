@@ -108,14 +108,7 @@ export const benefitCards: readonly BenefitCardContent[] = [
   },
 ] as const;
 
-export const footerLinks = [
-  { label: "Legal", href: "/legal" },
-  { label: "Licenses", href: "/licenses" },
-  { label: "Security", href: "/security" },
-  { label: "Careers", href: "/careers" },
-  { label: "Support", href: "/support" },
-  { label: "Status", href: "/status" },
-] as const;
+export const footerLinks = ["Legal", "Licenses", "Security", "Careers", "Support", "Status"] as const;
 
 export const socialLinks = [
   { label: "YouTube", icon: youtubeLogo },

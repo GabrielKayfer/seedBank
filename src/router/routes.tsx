@@ -4,7 +4,6 @@ import ClientAreaPage from "../pages/ClientAreaPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import StaticPage from "../pages/StaticPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const ProtectedClientAreaPage = () => (
@@ -23,12 +22,6 @@ const routes: RouteDefinition[] = [
   { path: "/", component: HomePage, layout: PublicLayout },
   { path: "/login", component: LoginPage, layout: AuthLayout },
   { path: "/app", component: ProtectedClientAreaPage, layout: AppLayout },
-  { path: "/legal", component: () => <StaticPage pageKey="legal" />, layout: PublicLayout },
-  { path: "/licenses", component: () => <StaticPage pageKey="licenses" />, layout: PublicLayout },
-  { path: "/security", component: () => <StaticPage pageKey="security" />, layout: PublicLayout },
-  { path: "/careers", component: () => <StaticPage pageKey="careers" />, layout: PublicLayout },
-  { path: "/support", component: () => <StaticPage pageKey="support" />, layout: PublicLayout },
-  { path: "/status", component: () => <StaticPage pageKey="status" />, layout: PublicLayout },
 ];
 
 const notFoundRoute: RouteDefinition = {

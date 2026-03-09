@@ -1,4 +1,4 @@
-﻿import styled from "styled-components";
+import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { Caption, Heading, Label, Text as BaseText } from "../Typography";
 
@@ -111,8 +111,13 @@ export const ActionList = styled.ul`
   gap: 8px;
 `;
 
-export const ActionItem = styled.span`
+export const ActionItem = styled.a`
   display: inline-block;
+  text-decoration: none;
+
+  &:hover ${Caption} {
+    color: ${colors.Emerald};
+  }
 `;
 
 export const ActionText = styled(Caption).attrs({

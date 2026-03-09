@@ -1,15 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { ThemeProvider } from 'styled-components'
-import { theme } from './styles/theme.ts'
-import { GlobalCss } from './styles/GlobalStyle.ts'
-import App from './App.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { ThemeProvider } from "styled-components";
+import App from "./App.tsx";
+import { AuthProvider } from "./context/AuthContext.tsx";
+import { GlobalCss } from "./styles/GlobalStyle.ts";
+import { theme } from "./styles/theme.ts";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalCss />
-      <App />
+      <AuthProvider>
+        <GlobalCss />
+        <App />
+      </AuthProvider>
     </ThemeProvider>
   </StrictMode>,
-)
+);

@@ -1,4 +1,4 @@
-﻿import type { ReactNode } from "react";
+import type { ReactNode } from "react";
 import facebookLogo from "../assets/facebookLogo.svg";
 import featureOne from "../assets/featureOne.png";
 import featureThree from "../assets/featureThree.png";
@@ -24,8 +24,8 @@ type BenefitCardContent = {
 };
 
 export const headerNavItems = [
-  { label: "Your Journey", href: "#your-journey" },
-  { label: "The Advantage", href: "#the-advantage" },
+  { label: "Your Journey", href: "/#your-journey" },
+  { label: "The Advantage", href: "/#the-advantage" },
 ] as const;
 
 export const featureCards = [
@@ -108,7 +108,14 @@ export const benefitCards: readonly BenefitCardContent[] = [
   },
 ] as const;
 
-export const footerLinks = ["Legal", "Licenses", "Security", "Careers", "Support", "Status"] as const;
+export const footerLinks = [
+  { label: "Legal", href: "/legal" },
+  { label: "Licenses", href: "/licenses" },
+  { label: "Security", href: "/security" },
+  { label: "Careers", href: "/careers" },
+  { label: "Support", href: "/support" },
+  { label: "Status", href: "/status" },
+] as const;
 
 export const socialLinks = [
   { label: "YouTube", icon: youtubeLogo },

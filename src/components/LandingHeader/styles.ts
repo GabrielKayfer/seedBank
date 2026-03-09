@@ -43,6 +43,10 @@ export const HeaderContent = styled.div`
   padding: 12px 0;
 `;
 
+export const TitleLink = styled.a`
+  text-decoration: none;
+`;
+
 export const Title = styled.h1<{ $tone?: Tone }>`
   ${({ $tone = "white" }) => titleBy("p", $tone)};
   margin: 0;
@@ -154,11 +158,15 @@ export const MobileMenuItem = styled.a`
   display: block;
   width: 100%;
   padding: 14px 16px;
+  border: 0;
   border-radius: 16px;
   background: ${({ theme }) => theme.colors.whiteCold};
   color: ${colors.Dark};
+  text-align: left;
   text-decoration: none;
+  font: inherit;
   font-weight: 600;
+  cursor: pointer;
 
   &:hover {
     color: ${colors.PrimaryPurple};
@@ -170,3 +178,4 @@ export const MobileMenuActions = styled.div`
   gap: 12px;
   margin-top: 4px;
 `;
+

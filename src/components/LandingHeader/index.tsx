@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { headerNavItems } from "../../content/landing";
+import { navigateTo } from "../../router/navigation";
 import { Button } from "../Button/intex";
 import {
   Actions,
@@ -15,17 +16,26 @@ import {
   NavList,
   RightGroup,
   Title,
+  TitleLink,
 } from "./styles";
 
-type HeaderProps = { onHelpClick: () => void };
+type LandingHeaderProps = {
+  onHelpClick: () => void;
+};
 
-const Header = ({ onHelpClick }: HeaderProps) => {
+const LandingHeader = ({ onHelpClick }: LandingHeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const openHelp = () => {
     closeMobileMenu();
     onHelpClick();
+  };
+
+  const handleNavigate = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    event.preventDefault();
+    closeMobileMenu();
+    navigateTo(href);
   };
 
   return (
@@ -44,15 +54,19 @@ const Header = ({ onHelpClick }: HeaderProps) => {
               <span />
             </Hamburger>
 
-            <Title $tone="PrimaryPurple">
-              <span>Seed</span>Bank
-            </Title>
+            <TitleLink href="/" onClick={(event) => handleNavigate(event, "/")}>
+              <Title $tone="PrimaryPurple">
+                <span>Seed</span>Bank
+              </Title>
+            </TitleLink>
 
             <RightGroup>
               <NavList>
                 {headerNavItems.map((item) => (
                   <li key={item.href}>
-                    <NavItem href={item.href}>{item.label}</NavItem>
+                    <NavItem href={item.href} onClick={(event) => handleNavigate(event, item.href)}>
+                      {item.label}
+                    </NavItem>
                   </li>
                 ))}
                 <li>
@@ -63,7 +77,7 @@ const Header = ({ onHelpClick }: HeaderProps) => {
               </NavList>
 
               <Actions>
-                <Button size="sm" variant="ghost" as="a" href="#support">
+                <Button as="a" href="/login" size="sm" variant="ghost" onClick={(event) => handleNavigate(event, "/login")}>
                   Login
                 </Button>
                 <Button size="sm" variant="primary" as="button" type="button" onClick={onHelpClick}>
@@ -79,11 +93,11 @@ const Header = ({ onHelpClick }: HeaderProps) => {
         <MobileMenuOverlay onClick={closeMobileMenu}>
           <MobileMenu onClick={(event) => event.stopPropagation()}>
             {headerNavItems.map((item) => (
-              <MobileMenuItem key={item.href} href={item.href} onClick={closeMobileMenu}>
+              <MobileMenuItem key={item.href} href={item.href} onClick={(event) => handleNavigate(event, item.href)}>
                 {item.label}
               </MobileMenuItem>
             ))}
-            <MobileMenuItem href="#support" onClick={closeMobileMenu}>
+            <MobileMenuItem href="/login" onClick={(event) => handleNavigate(event, "/login")}>
               Login
             </MobileMenuItem>
             <MobileMenuActions>
@@ -101,4 +115,5 @@ const Header = ({ onHelpClick }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default LandingHeader;
+

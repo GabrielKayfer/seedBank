@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+﻿import { useMemo } from "react";
 import { ChatKit, useChatKit } from "@openai/chatkit-react";
 import {
   ChatContainer,
@@ -7,6 +7,8 @@ import {
   ModalHeader,
   Overlay,
 } from "./styles";
+
+import fechar from "../../assets/fechar.png"
 
 type HelpModalProps = {
   open: boolean;
@@ -17,8 +19,8 @@ function getSessionEndpoint() {
   const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, "");
 
   return configuredApiUrl
-    ? `${configuredApiUrl}/api/chatkit/session`
-    : "/api/chatkit/session";
+    ? `${configuredApiUrl}/api/v1/chatkit/sessions`
+    : "/api/v1/chatkit/sessions";
 }
 
 function getOrCreateDeviceId() {
@@ -55,7 +57,7 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
         const data = await response.json().catch(() => ({}));
 
         if (!response.ok) {
-          throw new Error(data?.error || "Não foi possível criar a sessão do chat.");
+          throw new Error(data?.error || "Nao foi possivel criar a sessao do chat.");
         }
 
         return data.client_secret;
@@ -71,10 +73,10 @@ export function HelpModal({ open, onClose }: HelpModalProps) {
         <ModalHeader>
           <div>
             <h2>Ajuda</h2>
-            <p>Tire dúvidas sobre o SeedBank ou peça ajuda para abrir sua conta.</p>
+            <p>Tire duvidas sobre o SeedBank ou peca ajuda para abrir sua conta.</p>
           </div>
           <CloseButton onClick={onClose} aria-label="Fechar" type="button">
-            ×
+            <img src={fechar} alt="" />
           </CloseButton>
         </ModalHeader>
 

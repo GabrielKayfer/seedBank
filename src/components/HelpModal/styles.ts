@@ -49,4 +49,8 @@ export const CloseButton = styled.button`
   background: transparent;
   font-size: 24px;
   cursor: pointer;
+
+  img {
+  weight: 16px;
+  height: 16px;}
 `;

@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import { colors } from './colors'
+import { createGlobalStyle } from "styled-components";
+import { sharedShellTopColor } from "./shellBackground";
 
 export const GlobalCss = createGlobalStyle`
  *{
@@ -11,15 +11,15 @@ export const GlobalCss = createGlobalStyle`
 }
 
     body {
-    background-color: ${colors.SoftPurple};
-    color: ${colors.Dark};
-    padding-top: 40px;
+    background-color: ${sharedShellTopColor};
+    color: ${({ theme }) => theme.colors.Dark};
     }
     
     html {
+    background-color: ${sharedShellTopColor};
     scroll-behavior: smooth;
 }
     
 section[id] {
     scroll-margin-top: 100px;
-    }`
+    }`;

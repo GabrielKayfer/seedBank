@@ -2,7 +2,7 @@ export const colors = {
     PrimaryPurple: "#2D728F",
     DarkBlue: "#122f3b",
     AccentYellow: "#F2D64B",
-    SoftPurple: "#1492c83d", 
+    SoftPurple: "#57b0d9ca",
     Emerald: "#0ec984",
     Dark: "#1b1a1a",
     white: "#FFFFFF",

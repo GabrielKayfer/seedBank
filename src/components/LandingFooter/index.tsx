@@ -1,13 +1,10 @@
-import type { MouseEvent } from "react";
 import scan from "../../assets/scan.png";
 import { footerLinks, socialLinks } from "../../content/landing";
-import { navigateTo } from "../../router/navigation";
 import { Section } from "../../styles/Section";
 import {
   About,
   ActionItem,
   ActionList,
-  ActionText,
   Copyright,
   DownloadSection,
   FooterContainer,
@@ -24,11 +21,6 @@ import {
 } from "./styles";
 
 const LandingFooter = () => {
-  const handleNavigate = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    event.preventDefault();
-    navigateTo(href);
-  };
-
   return (
     <Section $bg="DarkBlue" $py="md">
       <FooterContainer>
@@ -45,10 +37,8 @@ const LandingFooter = () => {
               <TitleSection>About SeedBank</TitleSection>
               <ActionList>
                 {footerLinks.map((item) => (
-                  <li key={item.href}>
-                    <ActionItem href={item.href} onClick={(event) => handleNavigate(event, item.href)}>
-                      <ActionText>{item.label}</ActionText>
-                    </ActionItem>
+                  <li key={item}>
+                    <ActionItem>{item}</ActionItem>
                   </li>
                 ))}
               </ActionList>
@@ -72,4 +62,3 @@ const LandingFooter = () => {
 };
 
 export default LandingFooter;
-

@@ -8,8 +8,8 @@ export const SectionBackground = styled.section<{
 
   background: ${({ $variant }) =>
     $variant === "fadeToWhite"
-      ? "linear-gradient(to bottom, #2d728f00 0%, #ffffff 100%)"
-      : "linear-gradient(to bottom, #ffffff 100%, #2d728f00 0%)"};
+      ? "linear-gradient(to bottom, #9fc0d205 0%, #ffffff 100%)"
+      : "linear-gradient(to bottom, #ffffff 100%, #9fc0d200 0%)"};
 `;
 
 export const CardGrid = styled.div`

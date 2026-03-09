@@ -111,13 +111,9 @@ export const ActionList = styled.ul`
   gap: 8px;
 `;
 
-export const ActionItem = styled.a`
+export const ActionItem = styled.span`
   display: inline-block;
-  text-decoration: none;
-
-  &:hover ${Caption} {
-    color: ${colors.Emerald};
-  }
+  opacity: 0.78;
 `;
 
 export const ActionText = styled(Caption).attrs({

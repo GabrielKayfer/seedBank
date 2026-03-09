@@ -50,16 +50,10 @@ src/
   styles/
 
 server/
-  src/
-    config/
-    controllers/
-    data/
-    middlewares/
-    routes/
-    services/
+  index.js
 ```
 
-## Routes
+The project separates UI components, styling layers, and backend logic to keep responsibilities clearly defined.
 
 Frontend routes currently in use:
 

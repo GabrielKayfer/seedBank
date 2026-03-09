@@ -5,6 +5,8 @@ import {
   About,
   ActionItem,
   ActionList,
+  ActionText,
+  Copyright,
   DownloadSection,
   FooterContainer,
   FooterContent,
@@ -13,6 +15,7 @@ import {
   NavSection,
   Scan,
   ScanImg,
+  ScanText,
   SocialItem,
   Title,
   TitleSection,
@@ -27,7 +30,7 @@ const Footer = () => {
             <DownloadSection>
               <Title>The easy way to invest in the future</Title>
               <Scan>
-                <span>Scan to download the app:</span>
+                <ScanText>Scan to download the app:</ScanText>
                 <ScanImg style={{ backgroundImage: `url(${scan})` }} />
               </Scan>
             </DownloadSection>
@@ -36,7 +39,9 @@ const Footer = () => {
               <ActionList>
                 {footerLinks.map((item) => (
                   <li key={item}>
-                    <ActionItem href="#support">{item}</ActionItem>
+                    <ActionItem>
+                      <ActionText>{item}</ActionText>
+                    </ActionItem>
                   </li>
                 ))}
               </ActionList>
@@ -45,7 +50,7 @@ const Footer = () => {
               <TitleSection>Stay in touch</TitleSection>
               <NavItems>
                 {socialLinks.map((item) => (
-                  <SocialItem key={item.label} href="#support" aria-label={item.label}>
+                  <SocialItem key={item.label} aria-label={item.label}>
                     <img src={item.icon} alt={item.label} />
                   </SocialItem>
                 ))}
@@ -53,7 +58,7 @@ const Footer = () => {
             </NavSection>
           </FooterContent>
         </FooterInner>
-        <p>&copy; 2026 SeedBank. All rights reserved.</p>
+        <Copyright>&copy; 2026 SeedBank. All rights reserved.</Copyright>
       </FooterContainer>
     </Section>
   );

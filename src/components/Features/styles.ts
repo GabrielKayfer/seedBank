@@ -1,4 +1,4 @@
-import styled from "styled-components";
+﻿import styled from "styled-components";
 
 export const SectionBackground = styled.section<{
   $variant: "fadeToWhite" | "fadeToTransparent";
@@ -12,17 +12,13 @@ export const SectionBackground = styled.section<{
       : "linear-gradient(to bottom, #ffffff 100%, #2d728f00 0%)"};
 `;
 
-
 export const CardGrid = styled.div`
   display: grid;
   gap: ${({ theme }) => theme.spacing.lg};
   min-width: 0;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) 
-          and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    
-    
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) and (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   }
 `;
@@ -41,9 +37,11 @@ export const Card = styled.div<{ $bg: string }>`
   background-color: ${({ theme }) => theme.colors.white};
 
   cursor: pointer;
+
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 200px;
   }
+
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     display: none;
   }
@@ -62,16 +60,32 @@ export const CardTitle = styled.span`
   text-align: center;
 `;
 
-export const TextGrid = styled.div`
+export const StepsList = styled.div`
+  display: grid;
+  gap: ${({ theme }) => theme.spacing.xs};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    gap: ${({ theme }) => theme.spacing.xs};
+  }
+`;
+
+export const StepRow = styled.div<{ $imageLeft: boolean }>`
   display: grid;
   align-items: center;
-  justify-items: center;
   gap: ${({ theme }) => theme.spacing.xl};
-
   grid-template-columns: 1fr;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+
+    & > :first-child {
+      order: ${({ $imageLeft }) => ($imageLeft ? 0 : 1)};
+      justify-self: ${({ $imageLeft }) => ($imageLeft ? "start" : "end")};
+    }
+
+    & > :last-child {
+      order: ${({ $imageLeft }) => ($imageLeft ? 1 : 0)};
+    }
   }
 `;
 
@@ -88,17 +102,23 @@ export const ImgSection = styled.div<{ $bg: string }>`
   border-radius: ${({ theme }) => theme.radius.lg};
 `;
 
-export const TextSection = styled.p`
-  text-align: center;
+export const TextSection = styled.p<{ $alignDesktop: "left" | "right" }>`
   width: 100%;
+  max-width: 520px;
+  text-align: center;
 
   font-weight: normal;
   font-family: "Poppins", sans-serif;
   color: ${({ theme }) => theme.colors.Dark};
+  font-size: ${({ theme }) => theme.typography.fontSize.bodyLg};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
 
   span {
     color: ${({ theme }) => theme.colors.Emerald};
   }
 
-  font-size: ${({ theme }) => theme.typography.fontSize.bodyLg};
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: ${({ $alignDesktop }) => $alignDesktop};
+    justify-self: ${({ $alignDesktop }) => ($alignDesktop === "left" ? "start" : "end")};
+  }
 `;

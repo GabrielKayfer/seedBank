@@ -1,6 +1,6 @@
 ﻿import styled from "styled-components";
 import { colors } from "../../styles/colors";
-import { titleBy, type Tone } from "../../styles/typography";
+import { Caption, Heading, Label, Text as BaseText } from "../Typography";
 
 export const FooterContainer = styled.footer`
   width: 100%;
@@ -69,19 +69,17 @@ export const Scan = styled.div`
   align-items: center;
   gap: 60px;
 
-  span {
-    font-size: 30px;
-    font-weight: 600;
-    font-family: ${({ theme }) => theme.typography.fontFamily.poppins};
-  }
-
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     flex-direction: column;
     gap: ${({ theme }) => theme.spacing.md};
+  }
+`;
 
-    span {
-      font-size: 24px;
-    }
+export const ScanText = styled(Label).attrs({
+  $tone: "whiteCold",
+})`
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 24px;
   }
 `;
 
@@ -99,28 +97,29 @@ export const ScanImg = styled.div`
   }
 `;
 
-export const Title = styled.h4<{ $tone?: Tone }>`
-  ${({ $tone = "whiteCold" }) => titleBy("g", $tone)};
-  margin: 0;
-`;
+export const Title = styled(Heading).attrs({
+  as: "h4",
+  $variant: "titleLg",
+  $tone: "whiteCold",
+  $align: "center",
+})``;
 
 export const ActionList = styled.ul`
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: 8px;
 `;
 
-export const ActionItem = styled.a`
+export const ActionItem = styled.span`
   display: inline-block;
-  margin-bottom: 8px;
-  text-decoration: none;
-  font-size: ${({ theme }) => theme.typography.fontSize.bodySm};
-  font-weight: normal;
-  font-family: ${({ theme }) => theme.typography.fontFamily.poppins};
-  color: ${colors.whiteCold};
+`;
 
-  &:hover {
-    color: ${colors.Emerald};
-  }
+export const ActionText = styled(Caption).attrs({
+  $tone: "whiteCold",
+})`
+  display: inline;
+  opacity: 1;
 `;
 
 export const About = styled.section`
@@ -150,25 +149,29 @@ export const NavItems = styled.div`
   gap: 10px;
 `;
 
-export const SocialItem = styled.a`
+export const SocialItem = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   img {
     width: 24px;
-    cursor: pointer;
-  }
-
-  &:hover img {
-    opacity: 0.8;
   }
 `;
 
-export const TitleSection = styled.h4`
-  font-weight: 600;
-  font-size: ${({ theme }) => theme.typography.fontSize.titleP};
-  font-family: ${({ theme }) => theme.typography.fontFamily.poppins};
-  color: ${colors.whiteCold};
-  margin: 0;
+export const TitleSection = styled(Heading).attrs({
+  as: "h4",
+  $variant: "titleSm",
+  $tone: "whiteCold",
+  $fontStyle: "normal",
+  $align: "center",
+})`
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
 `;
+
+export const Copyright = styled(BaseText).attrs({
+  as: "p",
+  $variant: "bodySm",
+  $tone: "whiteCold",
+  $align: "center",
+})``;

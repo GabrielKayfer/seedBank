@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: seedbank-db
+    environment:
+      POSTGRES_USER: seedbank_user
+      POSTGRES_PASSWORD: seedbank_password
+      POSTGRES_DB: seedbank_db
+    ports:
+      - "5432:5432"

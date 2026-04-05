@@ -37,13 +37,6 @@ export const ModalHeader = styled.div`
   }
 `;
 
-export const ChatContainer = styled.div`
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-`;
-
 export const CloseButton = styled.button`
   border: 0;
   background: transparent;
@@ -51,6 +44,7 @@ export const CloseButton = styled.button`
   cursor: pointer;
 
   img {
-  weight: 16px;
-  height: 16px;}
+    width: 16px;
+    height: 16px;
+  }
 `;

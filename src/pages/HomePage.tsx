@@ -6,7 +6,7 @@ import TrustSection from "../components/TrustSection";
 import { usePublicLayoutActions } from "../layouts/LayoutContext";
 
 const HomePage = () => {
-  const { openHelp } = usePublicLayoutActions();
+  const { openHelp, openAccount } = usePublicLayoutActions();
 
   return (
     <>
@@ -14,7 +14,7 @@ const HomePage = () => {
       <Features />
       <TrustSection onContactClick={openHelp} />
       <Benefits />
-      <InviteSection onOpenAccountClick={openHelp} />
+      <InviteSection onOpenAccountClick={openAccount} />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { createContext, useContext } from "react";
 
 type PublicLayoutContextValue = {
   openHelp: () => void;
+  openAccount: () => void;
 };
 
 const PublicLayoutContext = createContext<PublicLayoutContextValue | null>(null);

@@ -4,11 +4,18 @@ import ClientAreaPage from "../pages/ClientAreaPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import PrivateAssistantPage from "../pages/PrivateAssistantPage";
 import ProtectedRoute from "./ProtectedRoute";
 
 const ProtectedClientAreaPage = () => (
   <ProtectedRoute>
     <ClientAreaPage />
+  </ProtectedRoute>
+);
+
+const ProtectedPrivateAssistantPage = () => (
+  <ProtectedRoute>
+    <PrivateAssistantPage />
   </ProtectedRoute>
 );
 
@@ -22,6 +29,7 @@ const routes: RouteDefinition[] = [
   { path: "/", component: HomePage, layout: PublicLayout },
   { path: "/login", component: LoginPage, layout: AuthLayout },
   { path: "/app", component: ProtectedClientAreaPage, layout: AppLayout },
+  { path: "/app/assistant", component: ProtectedPrivateAssistantPage, layout: AppLayout },
 ];
 
 const notFoundRoute: RouteDefinition = {

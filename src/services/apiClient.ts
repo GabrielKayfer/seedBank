@@ -12,7 +12,7 @@ type ApiError = {
   error?: string;
 };
 
-const DEFAULT_API_BASE_URL = "http://localhost:3001/api/v1";
+const DEFAULT_API_BASE_URL = "http://localhost:8080/api/v1";
 
 function getApiBaseUrl() {
   const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, "");

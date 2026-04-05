@@ -8,8 +8,7 @@ import {
 import { navigateTo } from "../router/navigation";
 import { ApiClientError } from "../services/apiClient";
 import { authApi, type AuthUser, type LoginPayload, type ProfileResponse } from "../services/authApi";
-
-const AUTH_TOKEN_STORAGE_KEY = "seedbank_auth_token";
+import { getStoredAuthToken, persistAuthToken } from "../services/authToken";
 
 type AuthContextValue = {
   token: string | null;
@@ -26,19 +25,6 @@ type AuthContextValue = {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-function persistToken(token: string | null) {
-  if (!token) {
-    localStorage.removeItem(AUTH_TOKEN_STORAGE_KEY);
-    return;
-  }
-
-  localStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token);
-}
-
-function getStoredToken() {
-  return localStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
@@ -50,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setToken(null);
     setUser(null);
     setProfile(null);
-    persistToken(null);
+    persistAuthToken(null);
   };
 
   const hydrateProfile = async (nextToken: string, fallbackUser?: AuthUser | null) => {
@@ -64,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
     );
     setToken(nextToken);
-    persistToken(nextToken);
+    persistAuthToken(nextToken);
   };
 
   const handleAuthFailure = (error: unknown) => {
@@ -78,7 +64,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const refreshSession = async () => {
-    const currentToken = getStoredToken();
+    const currentToken = getStoredAuthToken();
 
     if (!currentToken) {
       clearSession();
@@ -110,7 +96,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const session = await authApi.login(payload);
       setToken(session.token);
       setUser(session.user);
-      persistToken(session.token);
+      persistAuthToken(session.token);
       await hydrateProfile(session.token, session.user);
       navigateTo("/app");
     } catch (error) {
@@ -123,7 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-    const currentToken = token ?? getStoredToken();
+    const currentToken = token ?? getStoredAuthToken();
 
     try {
       if (currentToken) {

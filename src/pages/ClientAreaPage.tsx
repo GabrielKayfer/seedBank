@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../components/Button/intex";
 import { useAuth } from "../context/AuthContext";
+import { navigateTo } from "../router/navigation";
 
 const DashboardShell = styled.div`
   display: grid;
@@ -47,12 +48,20 @@ const HeroMain = styled.div`
 const Eyebrow = styled.span`
   display: inline-flex;
   width: fit-content;
-  padding: 8px 14px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  max-height: 34px;
+  padding: 6px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.72rem;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 `;
@@ -116,6 +125,55 @@ const HeroAside = styled.aside`
   align-content: start;
 `;
 
+const AssistantSpotlight = styled.div`
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+`;
+
+const AssistantSpotlightCopy = styled.div`
+  display: grid;
+  gap: 8px;
+
+  span {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  strong {
+    font-size: 1.08rem;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.55;
+  }
+`;
+
+const AssistantPrimaryButton = styled(Button)`
+  width: 100%;
+  min-height: 48px;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: ${({ theme }) => theme.components.button.radius.md};
+  font-size: ${({ theme }) => theme.components.button.fontSize.md};
+  box-shadow: 0 14px 28px rgba(10, 20, 40, 0.18);
+`;
+
 const UserBadgeCard = styled.div`
   padding: 20px;
   border-radius: 26px;
@@ -150,6 +208,7 @@ const UserEmail = styled.p`
 const HeaderActions = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 14px;
 `;
 
 const SectionGrid = styled.div`
@@ -430,10 +489,37 @@ const ClientAreaPage = () => {
 
         <HeroAside>
           <HeaderActions>
-            <Button as="button" type="button" variant="ghost" onClick={() => void logout()}>
+            <Button
+              as="button"
+              type="button"
+              size="sm"
+              variant="ghost"
+              style={{ maxHeight: "32px", minHeight: "32px" }}
+              onClick={() => void logout()}
+            >
               Log out
             </Button>
           </HeaderActions>
+
+          <AssistantSpotlight>
+            <AssistantSpotlightCopy>
+              <span>SeedBank AI</span>
+              <strong>Talk to my AI Manager</strong>
+              <p>
+                Receive guidance on your balance, recent transactions, and your financial goal.
+              </p>
+            </AssistantSpotlightCopy>
+
+            <AssistantPrimaryButton
+              as="button"
+              type="button"
+              size="md"
+              variant="primary"
+              onClick={() => navigateTo("/app/assistant")}
+            >
+              Abrir
+            </AssistantPrimaryButton>
+          </AssistantSpotlight>
 
           <UserBadgeCard>
             <UserBadge>{getInitials(displayName)}</UserBadge>

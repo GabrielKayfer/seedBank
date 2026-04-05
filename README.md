@@ -1,8 +1,8 @@
 # SeedBank
 
-SeedBank is a fintech portfolio project that combines a marketing experience, a login flow, a protected client area, and an AI-powered help assistant in the same product journey.
+SeedBank is a fintech portfolio project that combines a marketing landing page, a login flow, a protected client area, and an AI-powered help assistant in the same product journey.
 
-The goal is to present something closer to a real digital banking product than a static landing page: users can move from the public experience into authentication, access a protected customer area, and interact with an AI help flow backed by a server.
+The current architecture uses a React frontend and a Spring Boot backend that acts as a BFF (Backend For Frontend). The BFF centralizes authentication endpoints, profile data, and the AI chat integration with Google Gemini.
 
 ## Product Overview
 
@@ -13,7 +13,7 @@ The project currently covers four connected layers:
 - a protected client area at `/app`
 - an AI help flow available from the landing experience
 
-This keeps the project strong for portfolio use because it shows product thinking, frontend structure, backend integration, route protection, and external service integration in the same codebase.
+This keeps the project strong for portfolio use because it shows product thinking, frontend structure, route protection, and a frontend consuming a backend tailored to the UI.
 
 ## Current Scope
 
@@ -22,10 +22,10 @@ Implemented today:
 - public landing page with reusable marketing sections
 - separated layouts for public, auth, and protected app experiences
 - dedicated login route instead of modal-based authentication
-- fake authentication flow with token persistence
+- demo authentication flow with token persistence
 - protected client area populated from backend profile data
 - loading states for login, session restore, and protected navigation
-- AI help modal powered by OpenAI ChatKit
+- AI help modal backed by the Spring Boot BFF
 - footer placeholder items kept as presentation only, without fake navigation
 
 ## Core Features
@@ -39,40 +39,49 @@ Implemented today:
 ### Authentication Flow
 
 - dedicated `/login` route
-- fake login backed by real frontend-to-backend requests
+- frontend-to-backend login requests
 - token persistence in local storage
 - protected route handling
 
 ### Client Area
 
 - protected `/app` route
-- customer dashboard fed by mock API data
+- customer dashboard fed by backend profile data
 - account summary, transactions, and profile information
 - isolated app layout, separate from the landing experience
 
 ### AI Assistant
 
 - AI help modal available in the public experience
-- frontend integration with `@openai/chatkit-react`
-- backend session endpoint for ChatKit
-- OpenAI-backed conversational support flow
+- local React state for messages, input, and loading
+- BFF endpoint at `POST /api/v1/chat`
+- Gemini-backed conversational support flow mediated by Spring Boot
 
-## Tech Stack
+## Architecture
 
-Frontend:
+### Frontend
 
 - React 19
 - TypeScript
 - Vite
 - styled-components
 
-Backend:
+The frontend renders the landing, login, and protected app flows, and consumes the BFF through HTTP requests. The help modal sends the user message to the BFF and renders the returned reply locally.
 
-- Node.js
-- Express
-- CORS
-- express-rate-limit
-- OpenAI / ChatKit session integration
+### Backend BFF
+
+- Java 21+
+- Spring Boot
+- Spring Web
+- REST controllers for auth, profile, and chat
+- native integration with Google Gemini via `RestClient`
+
+The BFF is responsible for:
+
+- exposing frontend-oriented endpoints under `/api/v1`
+- isolating Gemini API access and secrets from the browser
+- shaping chat responses into a frontend-friendly payload: `{ "reply": "..." }`
+- keeping the UI decoupled from the external AI provider
 
 ## Project Structure
 
@@ -86,21 +95,18 @@ src/
   router/
   services/
   styles/
-
-server/
-  index.js
-  src/
-    config/
-    controllers/
-    data/
-    middlewares/
-    routes/
-    services/
+  main/
+    java/
+      com/seedbank/api/
+        controller/
+        dto/
+        service/
+    resources/
 ```
 
-The project separates UI components, styling layers, routing, auth state, and backend logic to keep responsibilities clearly defined.
+The project keeps frontend UI concerns and backend BFF code in the same repository, which makes local integration and portfolio demonstration straightforward.
 
-## Active Routes
+## Active Routes And Endpoints
 
 Frontend routes currently in use:
 
@@ -113,44 +119,46 @@ Backend endpoints currently used:
 - `POST /api/v1/auth/login`
 - `GET /api/v1/auth/me`
 - `POST /api/v1/auth/logout`
-- `POST /api/v1/chatkit/sessions`
+- `POST /api/v1/chat`
 
 ## Local Development
 
-Frontend:
+### Frontend
 
 ```bash
 npm install
 npm run dev
 ```
 
-Backend:
+### Backend BFF
 
 ```bash
-cd server
-npm install
-npm run dev
+./mvnw spring-boot:run
 ```
+
+By default, the frontend calls the BFF on `http://localhost:8080`.
 
 ## Environment Variables
 
-Frontend expects:
+Frontend can use:
 
 ```bash
-VITE_API_URL=http://localhost:3001
+VITE_API_URL=http://localhost:8080
 ```
 
-Backend uses environment variables such as:
+Backend uses properties such as:
 
 ```bash
-PORT=3001
-OPENAI_API_KEY=your_key
-OPENAI_WORKFLOW_ID=your_workflow_id
+server.port=8080
+gemini.api.key=your_key
+gemini.api.model=gemini-2.5-flash
 ```
+
+You can place those values in `src/main/resources/application.properties` or externalize them per environment.
 
 ## Demo Authentication
 
-The authentication flow is intentionally mocked for portfolio/demo purposes, but it is wired through real HTTP requests so the experience feels closer to a production application.
+The authentication flow is still demo-oriented for portfolio purposes, but it is wired through real HTTP requests so the experience stays closer to a production product.
 
 Current demo credentials:
 
@@ -162,14 +170,14 @@ Current demo credentials:
 The expected deployment model is:
 
 - frontend on Vercel
-- backend on Render
+- Spring Boot BFF on a Java-capable hosting platform
 
 For production to work correctly:
 
-- `VITE_API_URL` in Vercel must point to the Render backend URL
-- the backend CORS configuration in Render must allow the active Vercel domain
-- ChatKit/OpenAI environment variables must be configured in the backend
-- if the Vercel deployment URL changes, the backend must be updated accordingly
+- `VITE_API_URL` must point to the deployed BFF base URL
+- the BFF CORS configuration must allow the active frontend domain
+- Gemini credentials must be configured only on the backend
+- frontend builds must never embed Gemini secrets directly
 
 Without that alignment, authentication requests and the AI help flow will fail in production.
 
@@ -180,7 +188,7 @@ This project is no longer just a landing page MVP.
 Current phase:
 
 - landing structure consolidated
-- auth flow implemented with mock backend support
+- auth flow implemented with backend support
 - protected client area implemented
-- AI help experience integrated
+- AI help experience migrated to the Spring Boot + Gemini BFF
 - visual polish and deployment alignment in progress

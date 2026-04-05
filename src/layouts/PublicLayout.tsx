@@ -1,11 +1,12 @@
+import { useState } from "react";
+import { PublicChatModal } from "../components/PublicChatModal";
 import styled from "styled-components";
 import LandingFooter from "../components/LandingFooter";
 import LandingHeader from "../components/LandingHeader";
-import { HelpModal } from "../components/HelpModal";
+import { navigateTo } from "../router/navigation";
 import { sharedShellBackground } from "../styles/shellBackground";
 import { PublicLayoutProvider } from "./LayoutContext";
 import type { LayoutProps } from "./types";
-import { useState } from "react";
 
 const PublicShell = styled.div`
   min-height: 100vh;
@@ -18,18 +19,18 @@ const PublicContent = styled.div`
 `;
 
 const PublicLayout = ({ children }: LayoutProps) => {
-  const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [isPublicChatOpen, setIsPublicChatOpen] = useState(false);
 
-  const openHelp = () => setIsHelpOpen(true);
-  const closeHelp = () => setIsHelpOpen(false);
+  const openHelp = () => setIsPublicChatOpen(true);
+  const openAccount = () => navigateTo("/login");
 
   return (
-    <PublicLayoutProvider value={{ openHelp }}>
+    <PublicLayoutProvider value={{ openHelp, openAccount }}>
       <PublicShell>
-        <LandingHeader onHelpClick={openHelp} />
-        <HelpModal open={isHelpOpen} onClose={closeHelp} />
+        <LandingHeader onGetStartedClick={openAccount} onHelpClick={openHelp} />
         <PublicContent>{children}</PublicContent>
         <LandingFooter />
+        <PublicChatModal open={isPublicChatOpen} onClose={() => setIsPublicChatOpen(false)} />
       </PublicShell>
     </PublicLayoutProvider>
   );

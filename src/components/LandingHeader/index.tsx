@@ -21,15 +21,20 @@ import {
 
 type LandingHeaderProps = {
   onHelpClick: () => void;
+  onGetStartedClick: () => void;
 };
 
-const LandingHeader = ({ onHelpClick }: LandingHeaderProps) => {
+const LandingHeader = ({ onHelpClick, onGetStartedClick }: LandingHeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
   const openHelp = () => {
     closeMobileMenu();
     onHelpClick();
+  };
+  const openAccount = () => {
+    closeMobileMenu();
+    onGetStartedClick();
   };
 
   const handleNavigate = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -80,7 +85,7 @@ const LandingHeader = ({ onHelpClick }: LandingHeaderProps) => {
                 <Button as="a" href="/login" size="sm" variant="ghost" onClick={(event) => handleNavigate(event, "/login")}>
                   Login
                 </Button>
-                <Button size="sm" variant="primary" as="button" type="button" onClick={onHelpClick}>
+                <Button size="sm" variant="primary" as="button" type="button" onClick={onGetStartedClick}>
                   Get started
                 </Button>
               </Actions>
@@ -104,7 +109,7 @@ const LandingHeader = ({ onHelpClick }: LandingHeaderProps) => {
               <Button size="sm" variant="primary" as="button" type="button" fullWidth onClick={openHelp}>
                 Help
               </Button>
-              <Button size="sm" variant="primary" as="button" type="button" fullWidth onClick={openHelp}>
+              <Button size="sm" variant="primary" as="button" type="button" fullWidth onClick={openAccount}>
                 Get started
               </Button>
             </MobileMenuActions>

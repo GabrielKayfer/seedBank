@@ -1,0 +1,7 @@
+### Testar o Consultor Financeiro Gemini
+POST http://localhost:8080/api/v1/chat
+Content-Type: application/json
+
+{
+  "message": "Qual é o meu saldo atual e o que você recomenda fazer com ele?"
+}

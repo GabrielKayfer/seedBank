@@ -4,6 +4,11 @@ SeedBank is a fintech portfolio project that combines a marketing landing page, 
 
 The current architecture uses a React frontend and a Spring Boot backend that acts as a BFF (Backend For Frontend). The BFF centralizes authentication endpoints, profile data, and the AI chat integration with Google Gemini.
 
+## Production Links
+
+- Live Demo: https://seed-bank-five.vercel.app
+- API Endpoint: https://seedbank-akc6.onrender.com
+
 ## Product Overview
 
 The project currently covers four connected layers:
@@ -22,10 +27,10 @@ Implemented today:
 - public landing page with reusable marketing sections
 - separated layouts for public, auth, and protected app experiences
 - dedicated login route instead of modal-based authentication
-- demo authentication flow with token persistence
+- JWT-based authentication flow with token persistence
 - protected client area populated from backend profile data
 - loading states for login, session restore, and protected navigation
-- AI help modal backed by the Spring Boot BFF
+- dual-tier AI chat experience backed by the Spring Boot BFF
 - footer placeholder items kept as presentation only, without fake navigation
 
 ## Core Features
@@ -52,9 +57,9 @@ Implemented today:
 
 ### AI Assistant
 
-- AI help modal available in the public experience
-- local React state for messages, input, and loading
-- BFF endpoint at `POST /api/v1/chat`
+- public chat available from the landing page without authentication
+- private chat available only inside the authenticated client area
+- isolated endpoints for public and private assistant flows
 - Gemini-backed conversational support flow mediated by Spring Boot
 
 ## Architecture
@@ -66,14 +71,18 @@ Implemented today:
 - Vite
 - styled-components
 
-The frontend renders the landing, login, and protected app flows, and consumes the BFF through HTTP requests. The help modal sends the user message to the BFF and renders the returned reply locally.
+The frontend renders the landing, login, protected app, and private assistant flows. It consumes the BFF through HTTP requests and uses `VITE_API_URL` so local development can point to `localhost` while production uses Render.
 
 ### Backend BFF
 
-- Java 21+
+- Java 17+
 - Spring Boot
 - Spring Web
+- Spring Security
+- Spring Data JPA
+- H2 for current runtime persistence
 - REST controllers for auth, profile, and chat
+- JWT-based stateless auth
 - native integration with Google Gemini via `RestClient`
 
 The BFF is responsible for:
@@ -82,29 +91,42 @@ The BFF is responsible for:
 - isolating Gemini API access and secrets from the browser
 - shaping chat responses into a frontend-friendly payload: `{ "reply": "..." }`
 - keeping the UI decoupled from the external AI provider
+- separating public AI context from authenticated financial context
 
 ## Project Structure
 
 ```text
-src/
-  components/
-  content/
-  context/
-  layouts/
-  pages/
-  router/
-  services/
-  styles/
-  main/
-    java/
-      com/seedbank/api/
-        controller/
-        dto/
-        service/
-    resources/
+backend/
+  src/
+    main/
+      java/
+        com/seedbank/api/
+          config/
+          controller/
+          dto/
+          model/
+          repository/
+          security/
+          service/
+      resources/
+  Dockerfile
+  pom.xml
+
+frontend/
+  src/
+    components/
+    content/
+    context/
+    layouts/
+    pages/
+    router/
+    services/
+    styles/
+  package.json
+  vite.config.ts
 ```
 
-The project keeps frontend UI concerns and backend BFF code in the same repository, which makes local integration and portfolio demonstration straightforward.
+The project now follows a monorepo structure with strict isolation between frontend and backend concerns.
 
 ## Active Routes And Endpoints
 
@@ -113,19 +135,22 @@ Frontend routes currently in use:
 - `/` public landing page
 - `/login` authentication page
 - `/app` protected client area
+- `/app/assistant` authenticated AI assistant
 
 Backend endpoints currently used:
 
 - `POST /api/v1/auth/login`
 - `GET /api/v1/auth/me`
 - `POST /api/v1/auth/logout`
-- `POST /api/v1/chat`
+- `POST /api/v1/public/chat`
+- `POST /api/v1/private/chat`
 
 ## Local Development
 
 ### Frontend
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
@@ -133,6 +158,7 @@ npm run dev
 ### Backend BFF
 
 ```bash
+cd backend
 ./mvnw spring-boot:run
 ```
 
@@ -150,11 +176,12 @@ Backend uses properties such as:
 
 ```bash
 server.port=8080
-gemini.api.key=your_key
+google.ai.api.key=your_key
 gemini.api.model=gemini-2.5-flash
+jwt.secret=your_secret
 ```
 
-You can place those values in `src/main/resources/application.properties` or externalize them per environment.
+You can place those values in `backend/src/main/resources/application.properties` or inject them as environment variables in production.
 
 ## Demo Authentication
 
@@ -163,23 +190,39 @@ The authentication flow is still demo-oriented for portfolio purposes, but it is
 Current demo credentials:
 
 - login: `client@seedbank.com`
-- password: `Seed1234`
+- password: `senha123`
 
 ## Deployment Notes
 
 The expected deployment model is:
 
 - frontend on Vercel
-- Spring Boot BFF on a Java-capable hosting platform
+- Spring Boot BFF on Render via Docker
 
 For production to work correctly:
 
 - `VITE_API_URL` must point to the deployed BFF base URL
 - the BFF CORS configuration must allow the active frontend domain
 - Gemini credentials must be configured only on the backend
+- JWT secret must be configured only on the backend
 - frontend builds must never embed Gemini secrets directly
 
 Without that alignment, authentication requests and the AI help flow will fail in production.
+
+## Latest Delivery
+
+The most recent delivery focused on production readiness and strict context separation:
+
+- monorepo restructuring into `backend/` and `frontend/`
+- Docker and Render preparation for the Spring Boot backend
+- Vercel-ready frontend API configuration through `VITE_API_URL`
+- dual-tier chat architecture:
+  - public assistant on the landing page
+  - private financial assistant in `/app/assistant`
+- Spring Security hardening with JWT and route protection
+- explicit production CORS handling for Vercel domains
+- Render login/JWT fix so token generation works with environment-based secrets
+- private Gemini prompt enrichment using authenticated user data and recent transactions
 
 ## Current Status
 
@@ -191,4 +234,5 @@ Current phase:
 - auth flow implemented with backend support
 - protected client area implemented
 - AI help experience migrated to the Spring Boot + Gemini BFF
-- visual polish and deployment alignment in progress
+- production deployment active on Vercel + Render
+- final production validation and integration hardening in progress

@@ -12,15 +12,10 @@ type ApiError = {
   error?: string;
 };
 
-const DEFAULT_API_BASE_URL = "http://localhost:8080/api/v1";
+const DEFAULT_API_ORIGIN = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 function getApiBaseUrl() {
-  const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, "");
-
-  if (!configuredApiUrl) {
-    return DEFAULT_API_BASE_URL;
-  }
-
+  const configuredApiUrl = DEFAULT_API_ORIGIN.trim().replace(/\/$/, "");
   return configuredApiUrl.endsWith("/api/v1") ? configuredApiUrl : `${configuredApiUrl}/api/v1`;
 }
 

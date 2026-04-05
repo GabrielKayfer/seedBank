@@ -1,5 +1,6 @@
 package com.seedbank.api.service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.seedbank.api.model.TransactionEntity;
 import com.seedbank.api.model.UserEntity;
 import com.seedbank.api.repository.TransactionRepository;
@@ -26,6 +27,25 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 public class GeminiChatService {
     private static final Logger log = LoggerFactory.getLogger(GeminiChatService.class);
     private static final String FALLBACK_MESSAGE = "No momento nao consegui processar sua mensagem.";
+    private static final String SYSTEM_PROMPT = """
+            Voce e o SeedBot, o assistente financeiro oficial do SeedBank. Sua voz e profissional, encorajadora e segura.
+
+            Knowledge Base do SeedBank:
+            - Plano Silver: conta digital de entrada, cartao internacional, Pix e transferencias sem tarifa, suporte em horario comercial.
+            - Plano Gold: todos os beneficios do Silver, cashback em compras selecionadas, limite de cartao superior, atendimento prioritario e metas financeiras assistidas.
+            - Plano Black: todos os beneficios do Gold, gerente dedicado, experiencias premium, atendimento VIP 24/7, maior limite e consultoria financeira personalizada.
+            - Taxa de manutencao: Silver sem mensalidade, Gold USD 14.90 por mes, Black USD 39.90 por mes.
+            - Transferencias e Pix: gratuitos dentro do SeedBank e sem tarifa para Pix.
+            - Saque internacional: Silver USD 4.50 por saque, Gold USD 2.50 por saque, Black sem tarifa nos saques elegiveis.
+            - Cambio e compras internacionais: spread reduzido progressivamente do Silver para o Black.
+
+            Guardrails:
+            - Nunca de conselhos de investimento ilegais.
+            - Nunca revele dados de outros usuarios.
+            - Se nao souber algo sobre o banco, oriente o usuario a contatar o suporte humano.
+            - Nao invente politicas, tarifas ou produtos fora da base de conhecimento fornecida.
+            - Responda sem usar Markdown e com linguagem clara.
+            """;
 
     private final RestClient restClient;
     private final String apiKey;
@@ -46,10 +66,10 @@ public class GeminiChatService {
     }
 
     public String processPublicChat(String userMessage) {
-        String prompt = "Voce e o assistente publico do SeedBank. " +
-                "Responda apenas perguntas gerais sobre conta digital, produtos, seguranca, beneficios e como comecar. " +
-                "Nao invente dados pessoais e nao assuma que o usuario esta autenticado. " +
-                "Responda de forma curta, amigavel e sem usar Markdown. Pergunta do usuario: " + userMessage;
+        String prompt = "Contexto da conversa: atendimento publico do SeedBank. " +
+                "Responda apenas perguntas gerais sobre conta digital, planos, seguranca, beneficios, taxas e como comecar. " +
+                "Nao assuma autenticacao, nao acesse dados pessoais e, se a pergunta exigir dados da conta, oriente o usuario a entrar na area autenticada. " +
+                "Pergunta do usuario: " + userMessage;
 
         return processPrompt(prompt);
     }
@@ -81,7 +101,7 @@ public class GeminiChatService {
                 "Meta financeira ativa: " + user.getGoalName() + " com progresso de " + user.getGoalProgress() + "%. " +
                 "Ultimas transacoes: " + transactionsSummary + ". " +
                 "Use esse contexto para responder de forma personalizada, sugerindo proximos passos uteis quando fizer sentido, " +
-                "sem usar Markdown e sem inventar dados nao presentes no contexto. " +
+                "sem inventar dados nao presentes no contexto. " +
                 "Pergunta do cliente: " + userMessage;
 
         return processPrompt(prompt);
@@ -104,6 +124,7 @@ public class GeminiChatService {
     private String processPrompt(String prompt) {
 
         GeminiRequest requestBody = new GeminiRequest(
+                new Content(List.of(new Part(SYSTEM_PROMPT))),
                 List.of(new Content(List.of(new Part(prompt))))
         );
 
@@ -138,7 +159,11 @@ public class GeminiChatService {
         }
     }
 
-    private record GeminiRequest(List<Content> contents) {}
+    private record GeminiRequest(
+            @JsonProperty("system_instruction")
+            Content systemInstruction,
+            List<Content> contents
+    ) {}
 
     private record Content(List<Part> parts) {}
 

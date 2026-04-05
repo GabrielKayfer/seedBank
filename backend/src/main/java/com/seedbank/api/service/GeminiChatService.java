@@ -34,7 +34,7 @@ public class GeminiChatService {
 
     public GeminiChatService(
             TransactionRepository transactionRepository,
-            @Value("${gemini.api.key}") String apiKey,
+            @Value("${google.ai.api.key}") String apiKey,
             @Value("${gemini.api.model:gemini-2.5-flash}") String model
     ) {
         this.restClient = RestClient.builder()

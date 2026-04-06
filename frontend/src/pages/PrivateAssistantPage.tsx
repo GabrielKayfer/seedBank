@@ -146,7 +146,7 @@ const PrivateAssistantPage = () => {
         ...current,
         {
           role: "bot",
-          text: error instanceof Error ? error.message : "Nao foi possivel responder agora.",
+          text: error instanceof Error ? error.message : "Could not answer right now.",
         },
       ]);
     } finally {
@@ -161,8 +161,7 @@ const PrivateAssistantPage = () => {
           <HeaderCopy>
             <h1>Private assistant</h1>
             <p>
-              Use o assistente da sua conta para entender saldo, atividade recente e metas financeiras sem sair da
-              area autenticada.
+              Use your account assistant to understand your balance, recent activity, and financial goals without leaving the authenticated area.
             </p>
           </HeaderCopy>
 
@@ -195,22 +194,21 @@ const PrivateAssistantPage = () => {
         <ChatHeader>
           <h2>SeedBank account assistant</h2>
           <p>
-            Este chat usa o seu contexto autenticado. Pergunte sobre sua conta, transacoes recentes ou objetivos
-            financeiros.
+            This chat uses your authenticated context. Ask about your account, recent transactions, or financial goals.
           </p>
         </ChatHeader>
 
         <ChatExperience
-          emptyState="Pergunte sobre seu saldo, ultimas transacoes, cartao ou meta financeira."
+          emptyState="Ask about your balance, latest transactions, card, or financial goal."
           input={input}
-          inputPlaceholder="Pergunte algo sobre a sua conta"
+          inputPlaceholder="Ask something about your account"
           isLoading={isLoading}
-          loadingButtonLabel="Enviando..."
-          loadingLabel="Analisando seu contexto..."
+          loadingButtonLabel="Sending..."
+          loadingLabel="Analyzing your context..."
           messages={messages}
           onInputChange={setInput}
           onSubmit={sendMessage}
-          submitLabel="Enviar"
+          submitLabel="Send"
         />
       </ChatCard>
     </PageShell>

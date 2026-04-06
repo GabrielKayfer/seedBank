@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Button } from "../components/Button/intex";
 import { useAuth } from "../context/AuthContext";
@@ -379,6 +380,53 @@ const ProfileRow = styled.div`
   }
 `;
 
+
+const ActivityCard = styled(Card)`
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(18, 47, 59, 0.08);
+`;
+
+const PaginationButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.whiteCold};
+  color: ${({ theme }) => theme.colors.DarkBlue};
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(18, 47, 59, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(18, 47, 59, 0.04);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const PageInfo = styled.span`
+  color: rgba(18, 47, 59, 0.64);
+  font-size: 0.9rem;
+`;
+
+
 const GoalCard = styled(Card)`
   background:
     linear-gradient(180deg, rgba(14, 201, 132, 0.08) 0%, rgba(45, 114, 143, 0.04) 100%),
@@ -449,6 +497,26 @@ function getInitials(fullName: string) {
 
 const ClientAreaPage = () => {
   const { profile, logout, user, isLoadingAuth } = useAuth();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  if (isLoadingAuth || !profile) {
+    return null;
+  }
+
+  const itemsPerPage = 5;
+  const totalPages = Math.ceil(profile.recentTransactions.length / itemsPerPage);
+  const paginatedTransactions = profile.recentTransactions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
   if (isLoadingAuth || !profile) {
     return null;
@@ -517,7 +585,7 @@ const ClientAreaPage = () => {
               variant="primary"
               onClick={() => navigateTo("/app/assistant")}
             >
-              Abrir
+              Open
             </AssistantPrimaryButton>
           </AssistantSpotlight>
 
@@ -541,12 +609,12 @@ const ClientAreaPage = () => {
 
             <InfoGrid>
               <InfoTile>
-                <span>CURRENT BALANCE</span>
+                <span>BALANCE</span>
                 <strong>{formatCurrency(profile.availableBalance, profile.currency)}</strong>
                 <p>Available for your everyday transactions.</p>
               </InfoTile>
               <InfoTile>
-                <span>ACCOUNT</span>
+                <span>CURRENT PLAN</span>
                 <strong>{profile.accountType}</strong>
                 <p>Your current account plan and profile settings.</p>
               </InfoTile>
@@ -558,16 +626,16 @@ const ClientAreaPage = () => {
             </InfoGrid>
           </Card>
 
-          <Card>
+          <ActivityCard>
             <SectionHeader>
               <div>
-                <h2>Recent activity</h2>
+                <h2>Transactions History</h2>
                 <p>Your latest account transactions.</p>
               </div>
             </SectionHeader>
 
             <TransactionList>
-              {profile.recentTransactions.map((transaction) => (
+              {paginatedTransactions.map((transaction) => (
                 <TransactionItem key={transaction.id}>
                   <TransactionMeta>
                     <strong>{transaction.label}</strong>
@@ -579,7 +647,19 @@ const ClientAreaPage = () => {
                 </TransactionItem>
               ))}
             </TransactionList>
-          </Card>
+
+            <PaginationContainer>
+              <PaginationButton onClick={handlePrev} disabled={currentPage === 1}>
+                Previous
+              </PaginationButton>
+              <PageInfo>
+                Page {currentPage} of {totalPages || 1}
+              </PageInfo>
+              <PaginationButton onClick={handleNext} disabled={currentPage >= totalPages}>
+                Next
+              </PaginationButton>
+            </PaginationContainer>
+          </ActivityCard>
         </Column>
 
         <Column>

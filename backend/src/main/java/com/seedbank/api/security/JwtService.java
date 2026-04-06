@@ -3,6 +3,7 @@ package com.seedbank.api.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,16 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
-    private SecretKey getSignInKey() {
+    private SecretKey signInKey;
+
+    @PostConstruct
+    public void init() {
         byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
-        return Keys.hmacShaKeyFor(keyBytes);
+        this.signInKey = Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    private SecretKey getSignInKey() {
+        return signInKey;
     }
 
     public String generateToken(UserDetails userDetails) {

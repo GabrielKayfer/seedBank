@@ -67,22 +67,22 @@ public class AuthController {
             @RequestHeader("Authorization") String token,
             Authentication authentication
     ) {
-        String email = authentication.getName();
+        if (authentication == null || !(authentication.getPrincipal() instanceof UserEntity)) {
+            return ResponseEntity.status(401).build();
+        }
 
-        return userRepository.findByEmail(email)
-                .map(user -> {
-                    List<TransactionDTO> transactions = transactionRepository.findByUserEntityId(user.getId()).stream()
-                            .map(transaction -> new TransactionDTO(
-                                    transaction.getId().toString(),
-                                    transaction.getLabel(),
-                                    transaction.getAmount(),
-                                    transaction.getTransactionDate().toString()
-                            ))
-                            .toList();
+        UserEntity user = (UserEntity) authentication.getPrincipal();
 
-                    return ResponseEntity.ok(toClientProfileResponse(user, transactions));
-                })
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        List<TransactionDTO> transactions = transactionRepository.findByUserEntityId(user.getId()).stream()
+                .map(transaction -> new TransactionDTO(
+                        transaction.getId().toString(),
+                        transaction.getLabel(),
+                        transaction.getAmount(),
+                        transaction.getTransactionDate().toString()
+                ))
+                .toList();
+
+        return ResponseEntity.ok(toClientProfileResponse(user, transactions));
     }
 
     @PostMapping("/logout")

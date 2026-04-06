@@ -1,3 +1,5 @@
+import logger from "../utils/logger.js";
+
 export async function createChatkitSession(req, res, next) {
   try {
     if (!process.env.OPENAI_API_KEY || !process.env.OPENAI_WORKFLOW_ID) {
@@ -24,7 +26,7 @@ export async function createChatkitSession(req, res, next) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Failed to create ChatKit session:", data);
+      logger.error("Failed to create ChatKit session:", data);
 
       return res.status(response.status).json({
         error: data?.error?.message || "Failed to create ChatKit session.",
@@ -37,7 +39,7 @@ export async function createChatkitSession(req, res, next) {
       expires_at: data.expires_at,
     });
   } catch (error) {
-    console.error("Unexpected error in createChatkitSession controller:", error);
+    logger.error("Unexpected error in createChatkitSession controller:", error);
     return next(error);
   }
 }

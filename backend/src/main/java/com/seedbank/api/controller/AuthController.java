@@ -46,20 +46,20 @@ public class AuthController {
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
         System.out.println("Recebendo tentativa de login para: " + request.email());
 
-        authenticationManager.authenticate(
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.login(), request.password())
         );
 
-        return userRepository.findByEmail(request.login())
-                .map(user -> ResponseEntity.ok(new LoginResponse(
-                        jwtService.generateToken(user),
-                        new LoginResponse.UserDTO(
-                                user.getId().toString(),
-                                user.getFullName(),
-                                user.getEmail()
-                        )
-                )))
-                .orElseGet(() -> ResponseEntity.status(401).build());
+        UserEntity user = (UserEntity) authentication.getPrincipal();
+
+        return ResponseEntity.ok(new LoginResponse(
+                jwtService.generateToken(user),
+                new LoginResponse.UserDTO(
+                        user.getId().toString(),
+                        user.getFullName(),
+                        user.getEmail()
+                )
+        ));
     }
 
     @GetMapping("/me")

@@ -1,10 +1,10 @@
-export const FAKE_AUTH_TOKEN = "fake-jwt-seedbank-demo";
+export const FAKE_AUTH_TOKEN = process.env.FAKE_AUTH_TOKEN || "DEVELOPMENT_TOKEN";
 
 export const fakeAuthUser = {
   id: "client-001",
   login: "client@seedbank.com",
   email: "client@seedbank.com",
-  password: "Seed1234",
+  password: process.env.FAKE_AUTH_PASSWORD || "DEVELOPMENT_PASSWORD",
   fullName: "Gabriel Mendes",
 };
 

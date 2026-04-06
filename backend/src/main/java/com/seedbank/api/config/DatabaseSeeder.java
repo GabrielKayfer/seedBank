@@ -55,7 +55,11 @@ public class DatabaseSeeder {
                 UserEntity user = new UserEntity();
                 user.setFullName("Gabriel Mendes");
                 user.setEmail("client@seedbank.com");
-                user.setPassword(passwordEncoder.encode("senha123"));
+                String seederPassword = System.getenv("SEEDER_PASSWORD");
+                if (seederPassword == null || seederPassword.isEmpty()) {
+                    seederPassword = java.util.UUID.randomUUID().toString();
+                }
+                user.setPassword(passwordEncoder.encode(seederPassword));
                 user.setAccountType("Premium Student");
                 user.setAvailableBalance(finalBalance);
                 user.setCurrency("USD");

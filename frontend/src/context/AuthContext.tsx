@@ -60,7 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     clearSession();
-    setAuthError(error instanceof Error ? error.message : "Nao foi possivel validar sua sessao.");
+    setAuthError(error instanceof Error ? error.message : "Could not validate your session.");
   };
 
   const refreshSession = async () => {
@@ -101,7 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       navigateTo("/app");
     } catch (error) {
       clearSession();
-      setAuthError(error instanceof Error ? error.message : "Nao foi possivel entrar.");
+      setAuthError(error instanceof Error ? error.message : "Could not sign in.");
       throw error;
     } finally {
       setIsLoadingAuth(false);
